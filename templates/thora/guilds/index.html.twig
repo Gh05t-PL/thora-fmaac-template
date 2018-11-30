@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <h2>
+        <center>Guilds on {{ otsName }}</center>
+    </h2>
+    <table border="0" cellspacing="1" cellpadding="4" width="100%">
+        <tbody>
+        <tr bgcolor="gray">
+            <td colspan="3" class="white"><b>Guilds on {{ otsName }}</b></td>
+        </tr>
+        <tr bgcolor="gray">
+            <td width="10%"><b>Logo</b></td>
+            <td width="70%"><b>Description</b></td>
+            <td width="20%"><b>&nbsp;</b></td>
+        </tr>
+        {% for guild in guilds %}
+            <tr bgcolor="white">
+                <td><img src="files/images/default_guild_logo.gif" width="64" height="64"></td>
+                <td valign="top"><b><a href="/guilds/{{ guild.id }}">{{ guild.name }}</a></b><br>{{ guild.motd }}
+                </td>
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <td style="text-align: center;">
+                                <p>{{ guild.members }} Members</p>
+                                {% set avg = 0 %}
+                                {% if guild.memberss|length > 0 %}
+                                    {% for member in guild.memberss %}
+                                        {% set avg = avg + member.level %}
+                                    {% endfor %}
+                                    {% set avg = avg / guild.memberss|length  %}
+                                {% endif %}
+                                <p>Avg: {{ avg|round }}LvL</p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <table border="0" width="100%">
+        <tbody>
+        <tr>
+            <td align="center"><img src="files/images/blank.gif" width="80" height="1" border="0<BR"></td>
+            <td align="center"><img src="files/images/blank.gif" width="80" height="1" border="0<BR"></td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

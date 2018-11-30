@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% use "admin_panel/actions/edit_article_action.html.twig" %}
+
+{% block title %}Admin Panel - Edit Article{% endblock %}
+
+{% block content %}
+<style>
+    .example-wrapper { margin: 1em auto;  width: 95%; font: 18px/1.5 sans-serif; }
+    
+
+
+    a.page {
+        background: white;
+        border: solid 1px black;
+        border-radius: 20px;
+        /* padding: 0px 5%; */
+        text-align: center;
+        margin: 0 5px;
+        display: block;
+    }
+    div.pages {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .page.active {
+        background:#dadada;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Edit Article</h1>
+<a href="/news">< Back</a>
+    <div class="news">
+        <div class="article">
+            
+            {{ block('form') }}
+            
+        </div>
+    </div>
+    <hr>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ block('script') }}
+{% endblock javascripts %}

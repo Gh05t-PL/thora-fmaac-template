@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %} - DBOFireFun</title>
+    <script type="text/javascript">
+        function GetXmlHttpObject() {
+            var xmlHttp = null;
+            try {
+                xmlHttp = new XMLHttpRequest();
+            } catch (e) {
+                try {
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            }
+            return xmlHttp;
+        }
+
+        function MouseOverBigButton(source) {
+            source.firstChild.style.visibility = "visible";
+        }
+
+        function MouseOutBigButton(source) {
+            source.firstChild.style.visibility = "hidden";
+        }
+
+        function BigButtonAction(path) {
+            window.location = path;
+        }
+        varloginStatus = 0;
+        loginStatus = 'false';
+        var activeSubmenuItem = 'latestnews';
+        var IMAGES = 0;
+        IMAGES = 'http://otland.net/templates/thora/images';
+        var LINK_ACCOUNT = 0;
+        LINK_ACCOUNT = 'http://otland.net';
+    </script>
+    <link rel="shortcut icon" href="/templates/thora/images/server.ico" type="image/x-icon">
+    <link rel="icon" href="/templates/thora/img/icon.ico" type="image/x-icon">
+    <link href="/templates/thora/res/css/basic.css" rel="stylesheet">
+    <link href="/templates/thora/res/css/slate1.css" rel="stylesheet">
+    <link href="/templates/thora/res/css/style.css" rel="stylesheet">
+    {#<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>#}
+
+    <link href="/templates/thora/res/css/bootstrap_c.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="/templates/thora/js/jquery.tablesorter.min.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto+Slab:400,700|Alegreya+SC:400,700|Cinzel+Decorative:400,900"
+          rel="stylesheet" type="text/css">
+    <script src="/templates/thora/js/moment.js"></script>
+    <script src="/templates/thora/js/livestamp.js"></script>
+    <script type="text/javascript" src="/templates/thora/js/global.js.php?up05"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <!-- highlight.js library -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css">
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- Main Quill library -->
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+    <!-- Theme included stylesheets -->
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <style>
+        .jumbotron {
+            background: url('/templates/thora/images/loggo.png') no-repeat;
+            background-size: cover;
+
+        }
+
+        .quality {
+            background: url('/templates/thora/images/quality.png') no-repeat;
+            background-size: cover;
+
+        }
+
+        .navbar {
+            margin-top: 130px;
+            padding-left: 2px;
+            padding-right: 2px;
+        }
+
+        .pull-doown {
+            margin-top: 70px;
+            padding-left: 2px;
+            padding-right: 2px;
+        }
+
+        .pull-up {
+            margin-top: 10px;
+            padding-left: 2px;
+            padding-right: 2px;
+        }
+
+        .dragon {
+            position: absolute;
+            z-index: 2;
+            margin-top: -140px;
+            margin-left: 783px;
+        }
+
+        .szukaj {
+            background-color: #242424;
+            color: #242424;
+            border-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .col-3.pull-right {
+            width: 19.4043%;
+        }
+
+        .col-3.pull-left {
+            width: 19.4043%;
+        }
+
+        .col-8 {
+            width: 100%;
+            padding-right: 0px !important;
+            color: #242424;
+        }
+    </style>
+    <style type="text/css">
+        .fb_hidden {
+            position: absolute;
+            top: -10000px;
+            z-index: 10001
+        }
+
+        .fb_reposition {
+            overflow: hidden;
+            position: relative
+        }
+
+        .fb_invisible {
+            display: none
+        }
+
+        .fb_reset {
+            background: none;
+            border: 0;
+            border-spacing: 0;
+            color: #000;
+            cursor: auto;
+            direction: ltr;
+            font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+            font-size: 11px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: normal;
+            letter-spacing: normal;
+            line-height: 1;
+            margin: 0;
+            overflow: visible;
+            padding: 0;
+            text-align: left;
+            text-decoration: none;
+            text-indent: 0;
+            text-shadow: none;
+            text-transform: none;
+            visibility: visible;
+            white-space: normal;
+            word-spacing: normal
+        }
+
+        .fb_reset>div {
+            overflow: hidden
+        }
+
+        @keyframes fb_transform {
+            from {
+                opacity: 0;
+                transform: scale(.95)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        .fb_animate {
+            animation: fb_transform .3s forwards
+        }
+
+        .fb_dialog {
+            background: rgba(82, 82, 82, .7);
+            position: absolute;
+            top: -10000px;
+            z-index: 10001
+        }
+
+        .fb_dialog_advanced {
+            border-radius: 8px;
+            padding: 10px
+        }
+
+        .fb_dialog_content {
+            background: #fff;
+            color: #373737
+        }
+
+        .fb_dialog_close_icon {
+            background: url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;
+            cursor: pointer;
+            display: block;
+            height: 15px;
+            position: absolute;
+            right: 18px;
+            top: 17px;
+            width: 15px
+        }
+
+        .fb_dialog_mobile .fb_dialog_close_icon {
+            left: 5px;
+            right: auto;
+            top: 5px
+        }
+
+        .fb_dialog_padding {
+            background-color: transparent;
+            position: absolute;
+            width: 1px;
+            z-index: -1
+        }
+
+        .fb_dialog_close_icon:hover {
+            background: url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent
+        }
+
+        .fb_dialog_close_icon:active {
+            background: url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent
+        }
+
+        .fb_dialog_iframe {
+            line-height: 0
+        }
+
+        .fb_dialog_content .dialog_title {
+            background: #6d84b4;
+            border: 1px solid #365899;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0
+        }
+
+        .fb_dialog_content .dialog_title>span {
+            background: url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;
+            float: left;
+            padding: 5px 0 7px 26px
+        }
+
+        body.fb_hidden {
+            height: 100%;
+            left: 0;
+            margin: 0;
+            overflow: visible;
+            position: absolute;
+            top: -10000px;
+            transform: none;
+            width: 100%
+        }
+
+        .fb_dialog.fb_dialog_mobile.loading {
+            background: url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;
+            min-height: 100%;
+            min-width: 100%;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            z-index: 10001
+        }
+
+        .fb_dialog.fb_dialog_mobile.loading.centered {
+            background: none;
+            height: auto;
+            min-height: initial;
+            min-width: initial;
+            width: auto
+        }
+
+        .fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner {
+            width: 100%
+        }
+
+        .fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content {
+            background: none
+        }
+
+        .loading.centered #fb_dialog_loader_close {
+            clear: both;
+            color: #fff;
+            display: block;
+            font-size: 18px;
+            padding-top: 20px
+        }
+
+        #fb-root #fb_dialog_ipad_overlay {
+            background: rgba(0, 0, 0, .4);
+            bottom: 0;
+            left: 0;
+            min-height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            z-index: 10000
+        }
+
+        #fb-root #fb_dialog_ipad_overlay.hidden {
+            display: none
+        }
+
+        .fb_dialog.fb_dialog_mobile.loading iframe {
+            visibility: hidden
+        }
+
+        .fb_dialog_mobile .fb_dialog_iframe {
+            position: sticky;
+            top: 0
+        }
+
+        .fb_dialog_content .dialog_header {
+            background: linear-gradient(from(#738aba), to(#2c4987));
+            border-bottom: 1px solid;
+            border-color: #1d3c78;
+            box-shadow: white 0 1px 1px -1px inset;
+            color: #fff;
+            font: bold 14px Helvetica, sans-serif;
+            text-overflow: ellipsis;
+            text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0;
+            vertical-align: middle;
+            white-space: nowrap
+        }
+
+        .fb_dialog_content .dialog_header table {
+            height: 43px;
+            width: 100%
+        }
+
+        .fb_dialog_content .dialog_header td.header_left {
+            font-size: 12px;
+            padding-left: 5px;
+            vertical-align: middle;
+            width: 60px
+        }
+
+        .fb_dialog_content .dialog_header td.header_right {
+            font-size: 12px;
+            padding-right: 5px;
+            vertical-align: middle;
+            width: 60px
+        }
+
+        .fb_dialog_content .touchable_button {
+            background: linear-gradient(from(#4267B2), to(#2a4887));
+            background-clip: padding-box;
+            border: 1px solid #29487d;
+            border-radius: 3px;
+            display: inline-block;
+            line-height: 18px;
+            margin-top: 3px;
+            max-width: 85px;
+            padding: 4px 12px;
+            position: relative
+        }
+
+        .fb_dialog_content .dialog_header .touchable_button input {
+            background: none;
+            border: none;
+            color: #fff;
+            font: bold 12px Helvetica, sans-serif;
+            margin: 2px -12px;
+            padding: 2px 6px 3px 6px;
+            text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0
+        }
+
+        .fb_dialog_content .dialog_header .header_center {
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 18px;
+            text-align: center;
+            vertical-align: middle
+        }
+
+        .fb_dialog_content .dialog_content {
+            background: url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;
+            border: 1px solid #4a4a4a;
+            border-bottom: 0;
+            border-top: 0;
+            height: 150px
+        }
+
+        .fb_dialog_content .dialog_footer {
+            background: #f5f6f7;
+            border: 1px solid #4a4a4a;
+            border-top-color: #ccc;
+            height: 40px
+        }
+
+        #fb_dialog_loader_close {
+            float: left
+        }
+
+        .fb_dialog.fb_dialog_mobile .fb_dialog_close_button {
+            text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0
+        }
+
+        .fb_dialog.fb_dialog_mobile .fb_dialog_close_icon {
+            visibility: hidden
+        }
+
+        #fb_dialog_loader_spinner {
+            animation: rotateSpinner 1.2s linear infinite;
+            background-color: transparent;
+            background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            height: 24px;
+            width: 24px
+        }
+
+        @keyframes rotateSpinner {
+            0% {
+                transform: rotate(0deg)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        .fb_iframe_widget {
+            display: inline-block;
+            position: relative
+        }
+
+        .fb_iframe_widget span {
+            display: inline-block;
+            position: relative;
+            text-align: justify
+        }
+
+        .fb_iframe_widget iframe {
+            position: absolute
+        }
+
+        .fb_iframe_widget_fluid_desktop,
+        .fb_iframe_widget_fluid_desktop span,
+        .fb_iframe_widget_fluid_desktop iframe {
+            max-width: 100%
+        }
+
+        .fb_iframe_widget_fluid_desktop iframe {
+            min-width: 220px;
+            position: relative
+        }
+
+        .fb_iframe_widget_lift {
+            z-index: 1
+        }
+
+        .fb_iframe_widget_fluid {
+            display: inline
+        }
+
+        .fb_iframe_widget_fluid span {
+            width: 100%
+        }
+
+        .fb_customer_chat_bounce_in_v2 {
+            animation-duration: 300ms;
+            animation-name: fb_bounce_in_v2;
+            transition-timing-function: ease-in
+        }
+
+        .fb_customer_chat_bounce_out_v2 {
+            animation-duration: 300ms;
+            animation-name: fb_bounce_out_v2;
+            transition-timing-function: ease-in
+        }
+
+        .fb_customer_chat_bounce_in_v2_mobile_chat_started {
+            animation-duration: 300ms;
+            animation-name: fb_bounce_in_v2_mobile_chat_started;
+            transition-timing-function: ease-in
+        }
+
+        .fb_customer_chat_bounce_out_v2_mobile_chat_started {
+            animation-duration: 300ms;
+            animation-name: fb_bounce_out_v2_mobile_chat_started;
+            transition-timing-function: ease-in
+        }
+
+        .fb_customer_chat_bubble_pop_in {
+            animation-duration: 250ms;
+            animation-name: fb_customer_chat_bubble_bounce_in_animation
+        }
+
+        .fb_customer_chat_bubble_animated_no_badge {
+            box-shadow: 0 3px 12px rgba(0, 0, 0, .15);
+            transition: box-shadow 150ms linear
+        }
+
+        .fb_customer_chat_bubble_animated_no_badge:hover {
+            box-shadow: 0 5px 24px rgba(0, 0, 0, .3)
+        }
+
+        .fb_customer_chat_bubble_animated_with_badge {
+            box-shadow: -5px 4px 14px rgba(0, 0, 0, .15);
+            transition: box-shadow 150ms linear
+        }
+
+        .fb_customer_chat_bubble_animated_with_badge:hover {
+            box-shadow: -5px 8px 24px rgba(0, 0, 0, .2)
+        }
+
+        .fb_invisible_flow {
+            display: inherit;
+            height: 0;
+            overflow-x: hidden;
+            width: 0
+        }
+
+        .fb_mobile_overlay_active {
+            background-color: #fff;
+            height: 100%;
+            overflow: hidden;
+            position: fixed;
+            visibility: hidden;
+            width: 100%
+        }
+
+        @keyframes fb_bounce_in_v2 {
+            0% {
+                opacity: 0;
+                transform: scale(0, 0);
+                transform-origin: bottom right
+            }
+
+            50% {
+                transform: scale(1.03, 1.03);
+                transform-origin: bottom right
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1, 1);
+                transform-origin: bottom right
+            }
+        }
+
+        @keyframes fb_bounce_in_v2_mobile_chat_started {
+            0% {
+                opacity: 0;
+                top: 20px
+            }
+
+            100% {
+                opacity: 1;
+                top: 0
+            }
+        }
+
+        @keyframes fb_bounce_out_v2 {
+            0% {
+                opacity: 1;
+                transform: scale(1, 1);
+                transform-origin: bottom right
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0, 0);
+                transform-origin: bottom right
+            }
+        }
+
+        @keyframes fb_bounce_out_v2_mobile_chat_started {
+            0% {
+                opacity: 1;
+                top: 0
+            }
+
+            100% {
+                opacity: 0;
+                top: 20px
+            }
+        }
+
+        @keyframes fb_customer_chat_bubble_bounce_in_animation {
+            0% {
+                bottom: 6pt;
+                opacity: 0;
+                transform: scale(0, 0);
+                transform-origin: center
+            }
+
+            70% {
+                bottom: 18pt;
+                opacity: 1;
+                transform: scale(1.2, 1.2)
+            }
+
+            100% {
+                transform: scale(1, 1)
+            }
+        }
+
+        #modal-container {
+            min-height: 100%;
+            background: #aaaaaaaa;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            z-index: 9999;
+        }
+
+        .modal-close {
+            cursor: pointer;
+            display: inline;
+        }
+
+        #modal-item {
+            display: grid;
+            grid-template-columns: 20px 1fr 20px;
+            grid-template-rows: 15% 1fr 15%;
+            border-radius: 10px;
+        }
+
+        #modal-desc {
+            grid-column: 2/2;
+            grid-row: 2/2;
+            text-align: center;
+            z-index: 9999;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+        #modal-buttons {
+            grid-column: 2/2;
+            grid-row: 3/3;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        #modal-buttons > a {
+            justify-self: center;
+            align-self: center;
+        }
+
+        #modal-cross {
+            grid-column: 3/3;
+            grid-row: 1/1;
+            margin-right: 5px;
+            justify-self: center;
+            align-self: center;
+            z-index: 9999;
+            color: white;
+        }
+
+        #modal-separator-1 {
+            grid-column: 1/-1;
+            grid-row: 1/1;
+            background: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        #modal-separator-2 {
+            border-bottom: solid 1px #bababa;
+            grid-column: 1/-1;
+            grid-row: 2/2;
+        }
+
+        #modal-buttons > a {
+            background: #97a1a8;
+            background-image: -webkit-linear-gradient(top, #97a1a8, #52626b);
+            background-image: -moz-linear-gradient(top, #97a1a8, #52626b);
+            background-image: -ms-linear-gradient(top, #97a1a8, #52626b);
+            background-image: -o-linear-gradient(top, #97a1a8, #52626b);
+            background-image: linear-gradient(to bottom, #97a1a8, #52626b);
+            -webkit-border-radius: 28px;
+            -moz-border-radius: 28px;
+            border-radius: 28px;
+            font-family: Arial;
+            color: #fffcff;
+            font-size: small;
+            padding: 2px 3px;
+            min-width: 66px;
+            text-align: center;
+            text-decoration: none;
+            margin-left: 3px;
+        }
+
+        #modal-buttons > a:hover {
+            background: #3cb0fd;
+            background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+            background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+            background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+            background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+            background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+            text-decoration: none;
+        }
+
+        #modal-buttons > a:nth-child(2):hover {
+            background: #3cb0fd;
+            background-image: -webkit-linear-gradient(top, #fd3c3c, #db3434);
+            background-image: -moz-linear-gradient(top, #fd3c3c, #db3434);
+            background-image: -ms-linear-gradient(top, #fd3c3c, #db3434);
+            background-image: -o-linear-gradient(top, #fd3c3c, #db3434);
+            background-image: linear-gradient(to bottom, #fd3c3c, #db3434);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+
+<body>
+<div id="fb-root"></div>
+<div id="modal-container" onclick="closeModal(event)">
+    <div id="modal-item"
+         style="width: 470px;height: 230px;background: white;/*! align-self: center; */justify-self: center;position: sticky;margin-top: 20%;"></div>
+</div>
+<div class="container" style="width: 1194px;">
+    <div id="pasek"><span class="p">Valhalla has started on <span class="text">Saturday 24 October</span> at <span
+                    class="text">18:00 CEST</span>! - Make sure you check out our <a href="https://www.facebook.com/ValhallaAlternativeOTServer"><span
+                        class="text">Facebook</span></a>! for latest news!
+            <div class="btn-group navbar-right">
+                {% if loginHelper.isLoggedIn() %}
+                    <a href="/account/logout"><button type="button" class="p2 btn-login btn-success"><span class="glyphicon glyphicon-share-alt"></span>Logout</button></a>
+                {% else %}
+                        <button type="button" class="p2 btn-login btn-success dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-share-alt"></span>Login<span class="caret"></span>
+                        </button>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li style="width: 266px; margin: 5px 15px 0px 15px;">
+                                <form action="/account/login" method="post">
+                                    <div class="form-group">
+                                        <input type="password" name="account_login" maxlength="30" class="form-control"
+                                               placeholder="Account Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password_login" maxlength="30" class="form-control"
+                                               placeholder="Password">
+                                    </div>
+                                    <button type="submit" class="btn btn-success" style="width: 100px">Login</button>
+                                    <a class="btn btn-default" style="width: 131px" href="http://127.0.0.1/?subtopic=lostaccount">Lost
+                                        Password?</a>
+                                </form>
+                            </li>
+                        </ul>
+
+                {% endif %}
+            </div>
+            </span></div>
+    <div class="pull-doown">
+            <span class="pull-left">
+                <h1>
+                    <font face="Cinzel Decorative" color="black">{{ otsName }}</font>
+                </h1>
+            </span>
+
+    </div>
+    <div class="pull-doown">
+        {% set str = "danger" %}
+        {% if getServerStatus() %}
+            {% set str = "success" %}
+        {% endif %}
+        <a href="/players/online"><span class="label-online label-{{ str }} pull-right">
+                    <font color="white"><b>Server<br>{{ (str == "danger" ? "OFFLINE" : "ONLINE")  }}</b></font>
+                </span></a>
+    </div>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+           {# <!-- Brand and toggle get grouped for better mobile display -->
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->#}
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="/news" class="dropdown-toggle"><i class="glyphicon glyphicon-home"></i>
+                            News</a>
+
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="glyphicon glyphicon-lock"></i> Account <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/account/create">Create Account</a></li>
+                            <li><a href="/account">Account</a></li>
+                            <li><a href="http://127.0.0.1/templates/thora/thorav1.zip">Download Client</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="glyphicon glyphicon-user"></i> Community <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/player">Characters</a></li>
+                            <li><a href="/highscores">Highscores</a></li>
+                            <li><a href="/guilds">Guilds</a></li>
+                            <li><a href="/players/online">Who is online?</a></li>
+                            {#<!--<li><a href="http://127.0.0.1/?subtopic=casts">Cast System</a></li>-->
+                            <!--<li><a href="http://127.0.0.1/?subtopic=wars">Guild Wars</a></li>-->
+                            <!--<li><a href="http://127.0.0.1/?subtopic=killstatistics">Latest Deaths</a></li>-->#}
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="glyphicon glyphicon-info-sign"></i> Library <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/server/info">Server Info</a></li>
+                            {# <!--<li><a href="http://127.0.0.1/?subtopic=tasklist">Task List</a></li>-->
+                            <!--<li><a href="http://127.0.0.1/?subtopic=worldmap">World Map</a></li>-->
+                            <!--<li><a href="http://127.0.0.1/?subtopic=guide">Guide Spawns</a></li>-->#}
+                            <li><a href="/spells">Spells</a></li>
+                            {# <!--<li><a href="http://127.0.0.1/?subtopic=team">Support</a></li>-->
+                            <!--<li><a href="http://127.0.0.1/?subtopic=houses">Houses</a></li>-->
+                            <!--<li><a href="http://127.0.0.1/?subtopic=experiencetable">Experience Table</a></li>-->
+                            <!--<li><a href="http://127.0.0.1/?subtopic=premium">
+                                    <font color="lime">Premium Info</font>
+                                </a></li>-->#}
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="/forum"><i class="glyphicon glyphicon-list-alt"></i>
+                            Forum</a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <font color="lime"><i class="glyphicon glyphicon-shopping-cart"></i> Shopping</font><span
+                                    class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {#<li><a href="http://127.0.0.1/?subtopic=shopsystem">Shop</a></li>#}
+                            <li><a href="/points">Purchase Points</a></li>
+                            {#<li><a href="http://127.0.0.1/?subtopic=premium">#}
+                                    {#<font color="lime">Premium Info</font>#}
+                                {#</a></li>#}
+                        </ul>
+                    </li>
+
+
+                    <ul class="nav navbar-nav navbar-right">
+
+
+                            <div class="form-group" style="margin-top: 5px;margin-bottom: 0;">
+                                <div class="icon-addon addon-md">
+                                    <input id="szukator" type="text" name="name" placeholder="Search character..." class="form-control szukajka" onkeypress="(function(e,t){if (e.keyCode == 13 && t.value.length > 0) window.location.replace(('/player/' + t.value)) })(event,this)">
+                                    <label style="cursor: pointer;" for="szukajka" class="glyphicon glyphicon-search" rel="tooltip" title="szukajka" onclick="(function(){var szukator = document.querySelector('#szukator'); if(szukator.value.length > 0) window.location.replace(('/player/' + szukator.value)) })()"></label>
+                                </div>
+                            </div>
+
+
+                    </ul>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+    <div class="row-fluid">
+        <div class="col-3 pull-left">
+            <div class="well">
+                <h2>
+                    <font color="black">Webshop</font>
+                </h2>
+
+                <img src="/templates/thora/promocjaa.gif" width="197">
+                <div>
+                    <center>
+                        <div style="width:180px;margin-top: -29px;position: relative;"><a class="btn btn-small btn-success btn-block"
+                                                                                          href="http://127.0.0.1/?subtopic=shopsystem"><span class="glyphicon glyphicon-shopping-cart"></span>
+                                Get Premium!</a></div>
+                    </center>
+                </div>
+                <table class="table table-condensed table-content table-striped">
+                    <tbody>
+
+
+
+
+
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+
+            <div class="well">
+                <h2>
+                    <font color="black">Information</font>
+                </h2>
+                <table class="table table-striped table-condensed table-content">
+                    <tbody>
+                    <tr>
+                        <td><strong>IP:</strong></td>
+                        <td>{{ otsName }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Client:</strong></td>
+                        <td>10.98</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Type:</strong></td>
+                        <td>PvP/RPG</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Server Info:</strong></td>
+                        <td><a href="http://127.0.0.1/?subtopic=serverinfo">Here</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                {##}
+                {#<!--<div>
+                    <center><a class="btn btn-small btn-default btn-block" href="/account/create"><span
+                                    class="glyphicon glyphicon-share-alt"></span> Create Account</a></center>
+                </div>
+                <div style="margin: 3px;"></div>
+
+                <div>
+                    <center><a class="btn btn-small btn-warning btn-block" href="http://127.0.0.1/templates/thora/thorav2_antibot.zip"><span
+                                    class="glyphicon glyphicon-download-alt"></span> Download Client</a></center>
+                </div>-->#}
+
+
+            </div>
+        </div>
+
+
+        <div class="col-3 pull-right">
+            {% if true %}
+            <div class="well">
+                <h2>
+                    <font color="black">Powergamer of day</font>
+                </h2>
+                <table class="table table-condensed table-content table-striped">
+                    <tbody>
+                    {% for player in getPowerGamers() %}
+                        <tr>
+                            <td><a href="/player/{{ player.name }}" style="word-break: break-all;">{{ player.name }}</a>&nbsp;</td>
+                            {% if player.expDiff > 999999 and player.expDiff < 999999999 %}
+                                {#<p class="level"#}
+                                   {#style="font-size: 10px; padding-bottom: 0; border-radius: 5px; padding-top: 3px; background: green;">#}
+                                <td><span class="label label-success pull-right" style="font-size: 10px">+{{ player.expDiff|number_format(0,'',',') }}</span></td>
+
+                            {% elseif player.expDiff > 999999999 %}
+                                {#<p class="level"#}
+                                   {#style="font-size: 9px; padding-bottom: 0; border-radius: 5px; padding-top: 3px; background: green;">#}
+                                <td><span class="label label-success pull-right" style="font-size: 9px;">+{{ player.expDiff|number_format(0,'',',') }}</span></td>
+
+                            {% else %}
+                                {#<p class="level" style="background: green; border-radius: 5px;">#}
+                                <td><span class="label label-success pull-right">+{{ player.expDiff|number_format(0,'',',') }}</span></td>
+
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <table class="table table-condensed table-content table-striped">
+                    <tbody>
+                    </tbody>
+                </table>
+
+
+            </div>
+            {% endif %}
+
+            <div class="well">
+                <h2>
+                    <font color="black">Top 5 Level</font>
+                </h2>
+
+                <table class="table table-condensed table-content table-striped">
+                    <tbody>
+                    {% for player in getTop5() %}
+                    <tr>
+                        <td style="width: 80%"><strong>{{ loop.index }}.</strong><a href="/player/{{ player.name }}" style="word-break: break-all;">{{ player.name }}</a></td>
+                        <td><span class="label label-primary">Lvl. {{ player.level }}</span></td>
+                    </tr>
+                    {%  endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+            {#<div class="well">
+                <h2>
+                    <font color="black">Top 5 Guilds</font>
+                </h2>
+                <table class="table table-condensed table-content table-striped">
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>#}
+        </div>
+
+        <div class="news">
+            <div class="content-title">
+                <center style="margin-bottom: 15px;">
+                    <h1>Welcome to {{ otsName }}</h1>
+                    <p>{{ otsName }} {{ aboutServer }}</p>
+                    <center><a class="btn btn-success" href="/account/create"><span class="glyphicon glyphicon-share-alt"></span>
+                            Create Account</a> <a class="btn btn-warning" href="http://127.0.0.1/templates/thora/thorav2_antibot.zip"><span
+                                    class="glyphicon glyphicon-download-alt"></span> Download Client</a></center>
+                </center>
+            </div>
+            <div id="news">
+                <div class="col-8">
+                    <div class="well well-lg">
+                        {% block content %}
+
+                        {% endblock %}
+                    </div>
+                </div>
+                <script src="/templates/thora/js/bootstrap.js"></script>
+                {#<script>#}
+                    {#$(function () {#}
+                        {#var targetA = $('a[href$="latestnews"]');#}
+                        {#var el = (targetA.find("button").length) ? targetA.find("button") : targetA.parent();#}
+                        {#el.addClass('active');#}
+
+                        {#$('input[name$=login], input[name=name]').click(function (e) {#}
+                            {#e.stopPropagation();#}
+                        {#});#}
+
+                        {#var count = 92890;#}
+                        {#/*var counter = setInterval(timer, 1000);#}
+
+                        {#function timer() {#}
+                            {#count = count - 1;#}
+                            {#if (count == -1) {#}
+                                {#count = 24 * 60 * 60;#}
+                            {#}#}
+
+                            {#var seconds = count % 60;#}
+                            {#var minutes = Math.floor(count / 60);#}
+                            {#var hours = Math.floor(minutes / 60);#}
+                            {#minutes %= 60;#}
+                            {#hours %= 60;#}
+
+                            {#document.getElementById("timer").innerHTML = hours + " hours " + minutes +#}
+                                {#" minutes and " + seconds + " seconds";#}
+                        {#}*/#}
+                    {#});#}
+                {#</script>#}
+
+                <footer class="footer">
+                    <div class="container">
+                        <p class="text-muted" style="color:#ffffff;">This website and its contents are copyright ©
+                            {{ "now"|date("Y") }} {{ otsName }}</p>
+                    </div>
+                </footer>
+                <script>
+
+                    function closeModal(e) {
+
+                        if ((window.getComputedStyle(document.querySelector("#modal-container")).getPropertyValue('display') != "none" && e.target.id == "modal-container") || e.target.classList.contains("modal-close") == true) {
+                            document.querySelector("#modal-container").style.display = "none"
+
+                        }
+                    }
+
+                    // url:string(ex. /guilds/2 ),desc:string,options:array ([0]:cancel, [1]:execute)
+                    function openModal(url, desc, options) {
+
+                        console.log()
+                        if (window.getComputedStyle(document.querySelector("#modal-container")).getPropertyValue('display') == "none") {
+                            document.querySelector("#modal-container").style.display = "grid"
+                            document.querySelector("#modal-item").innerHTML = `<p id="modal-cross" class="modal-close"><i class="fas fa-times modal-close"></i></p><div id="modal-separator-1"></div><p id="modal-desc">${desc}</p><div id="modal-separator-2"></div><div id="modal-buttons"><a class="modal-close">${options[0]}</a><a id="modal-exec" href="${url}">${options[1]}</a></div>`
+                        }
+                    }
+
+
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+
+{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+<a href="/news">< Back</a>
+
+<div class="article">
+    {% if isAdmin %}
+        <h2 class="title bot-margin"><a href="/article/{{ article.id }}">{{ article.title }}</a></h2>
+        <p class="top-margin"><a href="/admin/edit/article/{{ article.id }}"><i class="far fa-edit"></i></a> | <a href="/admin/delete/article/{{ article.id }}"><i class="fas fa-times"></i></a></p>
+    {% else %}
+        <h2 class="title"><a href="/article/{{ article.id }}">{{ article.title }}</a></h2>
+    {% endif %}
+    <p class="info">By <a href="/player/{{ article.author }}">{{ article.author }}</a> on {{ article.datetime|date("d.m.Y H:i:s") }}</p>
+    <div class="ql-editor ns text">{{ article.text|raw }}</div>
+</div>
+
+{% endblock %}

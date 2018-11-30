@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <p>Please enter your account name and your password.<br><a href="?subtopic=createaccount">Create an account</a> if you
+        do not have one yet.</p>
+    {% for error in errors %}
+        <p>{{error}}</p>
+    {% endfor %}
+    <form action="/account/login" method="post">
+        <div class="TableContainer">
+            <div class="CaptionContainer">
+                <div class="CaptionInnerContainer"><span class="CaptionEdgeLeftTop"
+                                                         style="background-image:url(/templates/thora/images/content/box-frame-edge.gif);"></span>
+                    <span class="CaptionEdgeRightTop"
+                          style="background-image:url(/templates/thora/images/content/box-frame-edge.gif);"></span>
+                    <span class="CaptionBorderTop"
+                          style="background-image:url(/templates/thora/images/content/table-headline-border.gif);"></span>
+                    <span class="CaptionVerticalLeft"
+                          style="background-image:url(/templates/thora/images/content/box-frame-vertical.gif);"></span>
+                    <div class="Text">Account Login</div>
+                    <span class="CaptionVerticalRight"
+                          style="background-image:url(/templates/thora/images/content/box-frame-vertical.gif);"></span>
+                    <span class="CaptionBorderBottom"
+                          style="background-image:url(/templates/thora/images/content/table-headline-border.gif);"></span>
+                    <span class="CaptionEdgeLeftBottom"
+                          style="background-image:url(/templates/thora/images/content/box-frame-edge.gif);"></span>
+                    <span class="CaptionEdgeRightBottom"
+                          style="background-image:url(/templates/thora/images/content/box-frame-edge.gif);"></span>
+                </div>
+            </div>
+            <table class="Table1" cellpadding="0" cellspacing="0">
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="InnerTableContainer" style="display: flex;">
+
+                            <table style="width: 29%;float: left;">
+                                <tbody>
+                                <tr>
+                                    <td class="LabelV"><span>Account Name:</span></td>
+                                    <td style="width:100%;">{{ form_widget(form.Account) }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="LabelV"><span>Password:</span></td>
+                                    <td>{{ form_widget(form.Password) }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            {{ form_widget(form._token) }}
+                            <div style="margin: 7px 0px 0px 58px;"><input class="btn btn-info" type="submit"
+                                                                          value="Submit" name="Submit" alt="Submit"
+                                                                          style="margin-bottom: 5px;">
+                                <a href="" class="" style="display: block;">Account Lost?</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <table width="100%">
+            <tbody>
+            <tr align="center">
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr></tr>
+                        <tr></tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0"></table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+{% endblock %}

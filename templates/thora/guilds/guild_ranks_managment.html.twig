@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Guilds - Ranks Managment{% endblock %}
+
+{% block content %}
+<style>
+    .example-wrapper { margin: 1em auto; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper > div {
+        grid-template-columns: 1fr 1fr !important;
+        grid-gap: 25px;
+        display: grid;
+        margin-top: 40px;
+    }
+
+    
+    .highscores-wrapper { margin: 1em auto;  width: 95%; font: 18px/1.5 sans-serif; }
+    
+
+    .button {
+        background: #97a1a8;
+        background-image: -webkit-linear-gradient(top, #97a1a8, #52626b);
+        background-image: -moz-linear-gradient(top, #97a1a8, #52626b);
+        background-image: -ms-linear-gradient(top, #97a1a8, #52626b);
+        background-image: -o-linear-gradient(top, #97a1a8, #52626b);
+        background-image: linear-gradient(to bottom, #97a1a8, #52626b);
+        -webkit-border-radius: 28;
+        -moz-border-radius: 28;
+        border-radius: 28px;
+        font-family: Arial;
+        color: #fffcff;
+        font-size: 20px;
+        padding: 5px 15px;
+        text-decoration: none;
+        margin-left: 3px;
+        cursor: pointer;
+    }
+    .button:hover {
+        background: #3cb0fd;
+        background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        text-decoration: none;
+    }
+    form > div > div > label {display: block;}
+</style>
+
+<div class="example-wrapper">
+    <a href="/guilds/{{ guild.id }}">&lt; Back</a>
+    <h1>{{ guild.name }} - Ranks Managment</h1>
+
+    {% for error in errors %}
+        <p>{{ error }}</p>
+    {% endfor %}
+    <div>
+        <div>
+            <h3>Edit Ranks</h3>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+        <div>
+            <h3>Add Rank</h3>
+            {{ form_start(form2) }}
+            {{ form_widget(form2) }}
+            {{ form_end(form2) }}
+        </div>
+        <div>
+            <h3>Delete Rank</h3>
+            {{ form_start(form3) }}
+            {{ form_widget(form3) }}
+            {{ form_end(form3) }}
+        </div>
+        <div>
+            <h3>Set Rank</h3>
+            {{ form_start(form4) }}
+            {{ form_widget(form4) }}
+            {{ form_end(form4) }}
+        </div>
+    </div>
+
+        
+
+    
+    
+    
+    
+</div>
+{% endblock %}

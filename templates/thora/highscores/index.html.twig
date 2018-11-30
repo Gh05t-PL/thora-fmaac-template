@@ -1,0 +1,239 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <style>
+        .playerr:nth-child(even) {
+            background: white;
+        }
+
+        .playerr:nth-child(odd) {
+            background: #c8c8c8;
+        }
+        a.page {
+            background: white;
+            border: solid 1px black;
+            border-radius: 20px;
+            /* padding: 0px 5%; */
+            text-align: center;
+            margin: 0 5px;
+            display: block;
+        }
+        div.pages {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            margin-bottom: 30px;
+        }
+        .page.active {
+            background:#dadada;
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            margin: 15.6px 0;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4.8px;
+            cursor: pointer;
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            background: #3071a9;
+            border-radius: 2.4px;
+            border: 0px solid #010101;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            border: 1px solid #000000;
+            height: 36px;
+            width: 16px;
+            border-radius: 3px;
+            background: #ffffff;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -15.6px;
+        }
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #367ebd;
+        }
+        input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 4.8px;
+            cursor: pointer;
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            background: #3071a9;
+            border-radius: 2.4px;
+            border: 0px solid #010101;
+        }
+        input[type=range]::-moz-range-thumb {
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            border: 1px solid #000000;
+            height: 36px;
+            width: 16px;
+            border-radius: 3px;
+            background: #ffffff;
+            cursor: pointer;
+        }
+        input[type=range]::-ms-track {
+            width: 100%;
+            height: 4.8px;
+            cursor: pointer;
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+        }
+        input[type=range]::-ms-fill-lower {
+            background: #2a6495;
+            border: 0px solid #010101;
+            border-radius: 4.8px;
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        }
+        input[type=range]::-ms-fill-upper {
+            background: #3071a9;
+            border: 0px solid #010101;
+            border-radius: 4.8px;
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        }
+        input[type=range]::-ms-thumb {
+            box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+            border: 1px solid #000000;
+            height: 36px;
+            width: 16px;
+            border-radius: 3px;
+            background: #ffffff;
+            cursor: pointer;
+            height: 4.8px;
+        }
+        input[type=range]:focus::-ms-fill-lower {
+            background: #3071a9;
+        }
+        input[type=range]:focus::-ms-fill-upper {
+            background: #367ebd;
+        }
+
+    </style>
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+        <tr>
+            <td>
+                <center><h2>Ranking for Experience on {{ otsName }}</h2></center>
+                <br><br>
+                <p style="display: inline-block">Filter: </p><select style="display: inline-block" name="filter" id="filter"
+                                                                     onchange="highscoreFilter(this)">
+                    <option value="level">Level</option>
+                    <option value="mlvl">Magic Level</option>
+                    <option value="fist">Fist Fighting</option>
+                    <option value="club">Club Fighting</option>
+                    <option value="sword">Sword Fighting</option>
+                    <option value="axe">Axe Fighting</option>
+                    <option value="distance">Distance Fighting</option>
+                    <option value="shielding">Shielding</option>
+                    <option value="fishing">Fishing</option>
+                    <option value="" disabled selected>Select</option>
+                </select>
+                <table border="0" cellpadding="4" cellspacing="1" width="100%"></table>
+                <table border="0" cellpadding="4" cellspacing="1" width="100%">
+                    <tbody>
+                    <tr bgcolor="gray">
+                        <td class="whites"><b>#</b></td>
+                        <td class="whites"><b>Outfit</b></td>
+                        <td width="75%" class="whites"><b>Name</b></td>
+                        <td class="whites"><b>
+                                <center>{{ filterName }}</center>
+                            </b></td>
+                    </tr>
+                    {% for player in players %}
+                        <tr class="playerr">
+                            <td>{{ loop.index + (page - 1) * resultsLimit }}</td>
+                            {% if filter == "level" or filter == "mlvl" %}
+                                <td></td>
+                                <td><a href="/player/{{ player.name }}">{{ player.name }}</a></td>
+                                <td>{{ filter == "mlvl" ? attribute(player, "maglevel") : attribute(player, filter) }}</td>
+                            {% else %}
+                                <td></td>
+                                <td><a href="/player/{{ player.name }}">{{ player.name }}</a></td>
+                                <td>{{ player.skill }}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div style="margin-top: 5px;">
+        <div class="pages">
+
+            {% for i in 1..(pagesCount > 7 ? 7 : pagesCount) %}
+                {% if i == page %}
+                    <a class="page active" href="/highscores/{{ filter }}/{{ i }}">{{ i }}</a>
+                {% else %}
+                    <a class="page" href="/highscores/{{ filter }}/{{ i }}">{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <input style="display: {{ (pagesCount > 7) ? "block" : "none" }}; width: 100%;" id="range"type="range" min="1" max="1" value="1" name="">
+    </div>
+    <script>
+        function highscoreFilter(select){
+            if (select.value != "")
+                window.location.replace("/highscores/"+select.value)
+        }
+    </script>
+    <script>
+
+        var percent = document.getElementById("range");
+        var pages = document.getElementsByClassName("page");
+        {# var newsCount = {{ pagesCount }}; #}
+        var newsPageCount = {{ pagesCount }};
+        var currentPage = {{ page }};
+        var pageCount = Math.ceil(newsPageCount/7);
+        var filter = "{{ filter }}";
+
+        percent.oninput= function(){
+            if (pageCount == 1)
+                percent.max = 1;
+            else{
+
+                percent.max = newsPageCount - 6;
+                for (let i = 0; i < pages.length; i++) {
+
+                    pages[i].innerHTML = Number(percent.value)+i;
+                    pages[i].href = "/highscores"+`/${filter}/${(Number(percent.value)+i).toString()}`;
+                    pages[i].style.display = "block";
+
+
+                }
+                for (let i = 0; i < pages.length; i++) {
+                    pages[i].className = "page"
+                    if (Number(pages[i].innerHTML) == currentPage)
+                        pages[i].className = "page active"
+                }
+
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            if (pageCount == 1)
+                percent.max = 1;
+
+            else{
+                percent.max = newsPageCount - 6;
+                var value = currentPage - 3;
+                percent.value = value;
+                for (let i = 0; i < pages.length; i++) {
+                    pages[i].innerHTML = Number(percent.value)+i
+                    pages[i].href = "/highscores"+`/${filter}/${(Number(percent.value)+i).toString()}`;
+                    pages[i].className = "page"
+                    if (Number(pages[i].innerHTML) == currentPage)
+                        pages[i].className = "page active"
+                }
+            }
+
+        })
+
+    </script>
+{% endblock %}

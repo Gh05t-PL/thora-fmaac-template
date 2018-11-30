@@ -1,0 +1,372 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <script type="text/javascript">
+        function validate_required(field, alerttxt) {
+            with (field) {
+                if (value == null || value == "" || value == " ") {
+                    alert(alerttxt);
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+
+        function validate_email(field, alerttxt) {
+            with (field) {
+                apos = value.indexOf("@");
+                dotpos = value.lastIndexOf(".");
+                if (apos < 1 || dotpos - apos < 2) {
+                    alert(alerttxt);
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+
+        function validate_form(thisform) {
+            with (thisform) {
+                if (validate_required(account_name, "Please enter name of new account!") == false) {
+                    account_name.focus();
+                    return false;
+                }
+                if (validate_required(email, "Please enter your e-mail!") == false) {
+                    email.focus();
+                    return false;
+                }
+                if (validate_email(email, "Invalid e-mail format!") == false) {
+                    email.focus();
+                    return false;
+                }
+                if (verifpass == 1) {
+                    if (validate_required(passor, "Please enter password!") == false) {
+                        passor.focus();
+                        return false;
+                    }
+                    if (validate_required(passor2, "Please repeat password!") == false) {
+                        passor2.focus();
+                        return false;
+                    }
+                    if (passor2.value != passor.value) {
+                        alert('Repeated password is not equal to password!');
+                        return false;
+                    }
+                }
+                if (verifya == 1) {
+                    if (validate_required(verify, "Please enter verification code!") == false) {
+                        verify.focus();
+                        return false;
+                    }
+                }
+                if (rules.checked == false) {
+                    alert('To create account you must accept server rules!');
+                    return false;
+                }
+            }
+        }
+    </script>To play on {{ otsName }} you need an account.
+    All you have to do to create your new account is to enter your email address, password to new account, verification code from picture and to agree to the terms presented below.
+    If you have done so, your account name, password and e-mail address will be shown on the following page and your account and password will be sent
+    to your email address along with further instructions.<br><br>
+    <form action="/account/create" onsubmit="return validate_form(this)" method="post">
+        <table width="100%" border="0" cellspacing="1" cellpadding="4">
+            <tbody>
+            <tr>
+                <td bgcolor="gray" class="white"><b>Create an {{ otsName }} Account</b></td>
+            </tr>
+            <tr>
+                <td bgcolor="gray">
+                    <table border="0" cellspacing="8" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <table border="0" cellspacing="5" cellpadding="0">
+                                    <tbody>
+                                    <tr>
+                                        <td width="150" valign="top"><b>Account name: </b></td>
+                                        <td colspan="2">{{ form_widget(form.account) }}<br><font size="1"
+                                                                                        face="verdana,arial,helvetica">(Please
+                                                enter your new account name)</font></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="150" valign="top"><b>Email address: </b></td>
+                                        <td colspan="2">{{ form_widget(form.email) }}<br><font size="1"
+                                                                                                           face="verdana,arial,helvetica">(Your
+                                                email address is required to recovery an {{ otsName }} account)</font>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="150" valign="top"><b>Repeat Email address: </b></td>
+                                        <td colspan="2">{{ form_widget(form.repeatEmail) }}<br><font size="1"
+                                                                                                 face="verdana,arial,helvetica">(Your
+                                                email address is required to recovery an {{ otsName }} account)</font>
+                                        </td>
+                                    </tr>
+                                    <script type="text/javascript">var verifpass = 1;</script>
+                                    <tr>
+                                        <td width="150" valign="top"><b>Password: </b></td>
+                                        <td colspan="2">{{ form_widget(form.password) }}<br><font size="1"
+                                                                                                  face="verdana,arial,helvetica">(Here
+                                                write your password to new account on {{ otsName }})</font></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="150" valign="top"><b>Repeat password: </b></td>
+                                        <td colspan="2">{{ form_widget(form.repeatPassword) }}<br><font size="1"
+                                                                                                           face="verdana,arial,helvetica">(Repeat
+                                                your password)</font></td>
+                                    </tr>
+                                    {{ form_widget(form._token) }}
+
+                                    <tr>
+                                        <td width="150" valign="top"><b>Errors: </b></td>
+                                        <td colspan="2">
+                                            {% for error in errors %}
+                                                <p style="color: #faff72;">{{ error }}</p>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+
+                                   <!-- <tr>
+                                        <td width="150" valign="top"><b>Country: </b></td>
+                                        <td colspan="2"><select name="reg_country" class="w230">
+                                                <option value="unknown">Please choose your country</option>
+                                                <option value="af">Afghanistan</option>
+                                                <option value="al">Albania</option>
+                                                <option value="dz">Algeria</option>
+                                                <option value="ad">Andorra</option>
+                                                <option value="ao">Angola</option>
+                                                <option value="ai">Anguilla</option>
+                                                <option value="ar">Argentina</option>
+                                                <option value="am">Armenia</option>
+                                                <option value="au">Australia</option>
+                                                <option value="at">Austria</option>
+                                                <option value="az">Azerbaijan</option>
+                                                <option value="bs">Bahamas</option>
+                                                <option value="bh">Bahrain</option>
+                                                <option value="bd">Bangladesh</option>
+                                                <option value="bb">Barbados</option>
+                                                <option value="by">Belarus</option>
+                                                <option value="be">Belgium</option>
+                                                <option value="bj">Benin</option>
+                                                <option value="bt">Bhutan</option>
+                                                <option value="bo">Bolivia</option>
+                                                <option value="ba">Bosnia and Herzegovina</option>
+                                                <option value="bw">Botswana</option>
+                                                <option value="br">Brazil</option>
+                                                <option value="bg">Bulgaria</option>
+                                                <option value="bf">Burkina Faso</option>
+                                                <option value="kh">Cambodia</option>
+                                                <option value="cm">Cameroon</option>
+                                                <option value="ca">Canada</option>
+                                                <option value="td">Chad</option>
+                                                <option value="cl">Chile</option>
+                                                <option value="cn">China</option>
+                                                <option value="co">Colombia</option>
+                                                <option value="cd">Congo</option>
+                                                <option value="cr">Costa Rica</option>
+                                                <option value="hr">Croatia</option>
+                                                <option value="cu">Cuba</option>
+                                                <option value="cz">Czech Republic</option>
+                                                <option value="dk">Denmark</option>
+                                                <option value="do">Dominican Republic</option>
+                                                <option value="ec">Ecuador</option>
+                                                <option value="eg">Egypt</option>
+                                                <option value="ee">Estonia</option>
+                                                <option value="et">Ethiopia</option>
+                                                <option value="fj">Fiji</option>
+                                                <option value="fi">Finland</option>
+                                                <option value="fr">France</option>
+                                                <option value="ga">Gabon</option>
+                                                <option value="de">Germany</option>
+                                                <option value="gh">Ghana</option>
+                                                <option value="gr">Greece</option>
+                                                <option value="ht">Haiti</option>
+                                                <option value="hk">Hong Kong</option>
+                                                <option value="hu">Hungary</option>
+                                                <option value="id">Indonesia</option>
+                                                <option value="iq">Iraq</option>
+                                                <option value="ie">Ireland</option>
+                                                <option value="il">Israel</option>
+                                                <option value="it">Italy</option>
+                                                <option value="jm">Jamaica</option>
+                                                <option value="jp">Japan</option>
+                                                <option value="kz">Kazakhstan</option>
+                                                <option value="lv">Latvia</option>
+                                                <option value="lt">Lithuania</option>
+                                                <option value="lu">Luxembourg</option>
+                                                <option value="mx">Mexico</option>
+                                                <option value="ma">Morocco</option>
+                                                <option value="nl">Netherlands</option>
+                                                <option value="nz">New Zealand</option>
+                                                <option value="no">Norway</option>
+                                                <option value="om">Oman</option>
+                                                <option value="pk">Pakistan</option>
+                                                <option value="pa">Panama</option>
+                                                <option value="pg">Papua New Guinea</option>
+                                                <option value="py">Paraguay</option>
+                                                <option value="pe">Peru</option>
+                                                <option value="pl">Poland</option>
+                                                <option value="pt">Portugal</option>
+                                                <option value="pr">Puerto Rico</option>
+                                                <option value="qa">Qatar</option>
+                                                <option value="ro">Romania</option>
+                                                <option value="ru">Russian Federation</option>
+                                                <option value="sk">Slovakia</option>
+                                                <option value="za">South Africa</option>
+                                                <option value="es">Spain</option>
+                                                <option value="se">Sweden</option>
+                                                <option value="ch">Switzerland</option>
+                                                <option value="tw">Taiwan</option>
+                                                <option value="tr">Turkey</option>
+                                                <option value="ua">Ukraine</option>
+                                                <option value="gb">United Kingdom</option>
+                                                <option value="us">United States</option>
+                                                <option value="uy">Uruguay</option>
+                                                <option value="ve">Venezuela</option>
+                                                <option value="vn">Vietnam</option>
+                                                <option value="zm">Zambia</option>
+                                                <option value="zw">Zimbabwe</option>
+                                            </select></td>
+                                    </tr>-->
+                                    
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table border="0" cellspacing="5" cellpadding="0">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            Please review the following terms and state your agreement below.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>{{ otsName }} Rules</b><br>
+                                            <textarea rows="16" wrap="physical" cols="75" readonly="true">{{ otsName }} is an online role-playing game in which thousands of players from all over the world meet everyday. In order to ensure that the game is fun for everyone, {{ otsName }} staff expects all players to behave in a reasonable and respectful manner.
+
+{{ otsName }} staff reserves the right to stop destructive behaviour in the game or in the official website. Such behaviour includes, but is not limited to, the following offences:
+
+1. Names
+a) Offensive Name
+Names that are insulting, racist, sexually related, drug-related, harassing or generally objectionable.
+b) Invalid Name Format
+Names that contain parts of sentences (except for guild names), badly formatted words or nonsensical combinations of letters.
+c) Name Containing Forbidden Advertising
+Names that advertise brands, products or services of third parties, content which is not related to the game or trades for real money.
+d) Unsuitable Name
+Names that express religious or political views or generally do not fit into {{ otsName }}'s medieval fantasy setting.
+e) Name Supporting Rule Violation
+Names that support, incite, announce or imply a violation of the {{ otsName }} Rules.
+
+2. Statements
+a) Offensive Statement
+Insulting, racist, sexually related, drug-related, harassing or generally objectionable statements.
+b) Spamming
+Excessively repeating identical or similar statements or using badly formatted or nonsensical text.
+c) Forbidden Advertising
+Advertising brands, products or services of third parties, content which is not related to the game or trades for real money.
+d) Off-Topic Public Statement
+Religious or political public statements or other public statements which are not related to the topic of the used channel or board.
+e) Violating Language Restriction
+Non-English statements in boards and channels where the use of English is explicitly required.
+f) Disclosing Personal Data of Others
+Disclosing personal data of other people.
+g) Supporting Rule Violation
+Statements that support, incite, announce or imply a violation of the {{ otsName }} Rules.
+
+3. Cheating
+a) Bug Abuse
+Exploiting obvious errors of the game.
+b) Using Unofficial Software to Play
+Manipulating the official client program or using additional software to play the game.
+
+4. {{ otsName }} staff
+a) Pretending to be {{ otsName }} staff
+Pretending to be a representative of {{ otsName }} staff or to have their legitimation or powers.
+b) Slandering or Agitating against {{ otsName }} staff
+Publishing clearly wrong information about or calling a boycott against {{ otsName }}.
+c) False Information to {{ otsName }} staff
+Intentionally giving wrong or misleading information to {{ otsName }} staff in reports about rule violations, complaints, bug reports or support requests.
+
+5. Legal Issues
+a) Account Trading or Sharing
+Offering account data to other players, accepting other players' account data or allowing other players to use your account.
+b) Hacking
+Stealing other players' account or personal data.
+c) Attacking {{ otsName }} Server
+Attacking, disrupting or damaging the operation of {{ otsName }} server.
+d) Violating Law or Regulations
+Violating any applicable law, the {{ otsName }} Service Agreement or rights of third parties.
+
+
+Violating or attempting to violate the {{ otsName }} Rules may lead to a temporary suspension of characters and accounts. In severe cases the removal or modification of character skills, attributes and belongings, as well as the permanent removal of characters and accounts without any compensation may be considered. The sanction is based on the seriousness of the rule violation and the previous record of the player. It is determined at the sole discretion of {{ otsName }} staff and can be imposed without any previous warning.
+
+These rules may be changed at any time. All changes will be announced on the {{ otsName }} website.</textarea>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table border="0" cellspacing="5" cellpadding="0">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="rules" id="rules" value="true"><label
+                                                    for="rules"><u> I agree to the {{ otsName }} Rules.</u><br>
+                                            </label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            If you fully agree to these terms, click on the "I Agree" button in order to
+                                            create an {{ otsName }} account.<br>
+                                            If you do not agree to these terms or do not want to create an {{ otsName }}
+                                            account, please click on the "Cancel" button.
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <table border="0" width="100%">
+            <tbody>
+            <tr>
+                <td align="center">
+                    <img src="/templates/thora/images/blank.gif" width="120" height="1" border="0"><br>
+                </td>
+                <td align="center" valign="top">
+                    <input type="image" name="I Agree" src="/templates/thora/images/buttons/sbutton_iagree.gif"
+                           border="0" width="120" height="18">
+
+                </td>
+                <td align="center">
+                    <form action="?subtopic=latestnews" method="post">
+                        <input type="image" name="Cancel" src="/templates/thora/images/buttons/sbutton_cancel.gif"
+                               border="0" width="120" height="18">
+                    </form>
+                </td>
+                <td align="center">
+                    <img src="/templates/thora/images/blank.gif" width="120" height="1" border="0"><br>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <img src="/templates/thora/images/blank.gif" width="10" height="1" border="0">
+
+    </form>
+{% endblock %}

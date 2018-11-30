@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% use "admin_panel/actions/charts.html.twig" %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<style>
+    .example-wrapper { margin: 1em auto; width: 95%; font: 18px/1.5 sans-serif; }
+    
+    .charts-container {
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+    .actions {
+        display: inline-block;
+        width: 40%;
+        margin-left: 20px;
+    }
+    .actions > div > a {
+        display: block;
+        font-size: 14px;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Admin Panel</h1>
+    {{ block("charts") }}
+    <div class="actions">
+            <p>Actions List</p>
+            <div>
+                <a href="/admin/create/article">Create Article</a>
+                <a href="/account/create/character">Edit Item Shop</a>
+                <a href="/admin/edit/player">Edit Player</a>
+                <a href="/account/change/email">Edit Account</a>
+                <a href="/account/change/email">Ban/unBAN</a>
+                <a href="/account/change/email">Something Special</a>
+            </div>
+    
+        </div>
+    
+
+</div>
+{% block javascripts %}
+    {{ block("script") }}
+{% endblock javascripts %}
+{% endblock %}

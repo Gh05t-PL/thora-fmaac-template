@@ -1,0 +1,91 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+    <a href="/guilds">&lt; Back</a>
+    <table border="0" width="100%">
+        <tbody>
+        <tr>
+            <td width="64"><img src="/templates/thora/images/default_guild_logo.gif" width="64" height="64"></td>
+            <td align="center" width="100%">
+                <h1>{{ guild.name }}</h1>
+            </td>
+            <td width="64"><img src="/templates/thora/images/default_guild_logo.gif" width="64" height="64"></td>
+        </tr>
+        </tbody>
+    </table>
+    <table border="0" cellspacing="1" cellpadding="4" width="100%">
+        <tbody>
+        <tr bgcolor="gray">
+            <td colspan="3" class="white"><b>Guild Members</b></td>
+        </tr>
+        <tr bgcolor="gray">
+            <td width="15%"><b>Rank</b></td>
+            <td width="15%" {#style="text-align: center"#}><b>Level</b></td>
+            <td width="70%"><b>Name and Title</b></td>
+        </tr>
+        {% for member in members %}
+        <tr bgcolor="white">
+            <td valign="top">{{ member.rankName }}</td>
+            <td {#style="text-align: center"#}>{{ member.level }}</td>
+            <td>
+                <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tbody>
+                    {% if member.guildNick|length > 0 %}
+                        {% if member.accountId == accountId %}
+                            <td><div style="display: grid;grid-template-columns: auto 1fr;"><p style="margin: 0;"><a href="/player/{{ member.nick }}">{{ member.nick }}</a> "{{ member.guildNick }}"</p><a style="margin: 0;justify-self: end;text-decoration:none;color:red;cursor:pointer;" onclick="openModal('/guilds/{{ guild.id }}/leave/{{ member.id }}', 'Are you sure you want to leave this guild?', ['No', 'Yes'])"><i class="fas fa-times"></i></a></div></td>
+                        {% else %}
+                            <td><p style="margin: 0;"><a href="/player/{{ member.nick }}">{{ member.nick }}</a> "{{ member.guildNick }}"</p></td>
+                        {% endif %}
+                    {% else %}
+                        {% if member.accountId == accountId %}
+                            <td><div style="display: grid;grid-template-columns: auto 1fr;"><a href="/player/{{ member.nick }}">{{ member.nick }}</a><a style="margin: 0;justify-self: end;text-decoration:none;color:red;cursor:pointer;" onclick="openModal('/guilds/{{ guild.id }}/leave/{{ member.id }}', 'Are you sure you want to leave this guild?', ['No', 'Yes'])"><i class="fas fa-times"></i></a></div></td>
+                        {% else %}
+                            <td><a href="/player/{{ member.nick }}">{{ member.nick }}</a></td>
+                        {% endif %}
+
+                    {% endif %}
+                    {#<tr>
+                        <td><a href="/player/"><font color="red">Ghost Dfa</font></a></td>
+                    </tr>#}
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table><br>
+    <table border="0" cellspacing="1" cellpadding="4" width="100%">
+        <tbody>
+        <tr bgcolor="gray">
+            <td colspan="2" class="white"><b>Invited Characters</b></td>
+        </tr>
+        {% if invitations %}
+            {% for invitation in invitations %}
+                <tr bgcolor="white">
+                    {% if invitation.account_id == accountId %}
+                        <td><a href="/player/{{ invitation.nick }}" style="padding: 8px 0px;float: left;">{{ invitation.nick }}</a><a class="btn btn-info" style="float: right" onclick="openModal('/guilds/{{ guild.id }}/invitation/{{ invitation.id }}', 'Are you sure you want to accept invite?', ['No', 'Yes'])">Accept Invite</a></td>
+                        <td>{{ invitation.level }} {{ vocations[invitation.vocation] }}</td>
+                    {% else %}
+                        <td><a href="/player/{{ invitation.nick }}" style="padding: 8px 0px;float: left;">{{ invitation.nick }}</a></td>
+                        <td>{{ invitation.level }} {{ vocations[invitation.vocation] }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        {% else %}
+        <tr bgcolor="white">
+            <td>No invited characters found.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+    <div style="margin-top: 14px;">
+        {% if loggedRankLevel >= 2 %}
+            <a href="/guilds/{{ guild.id }}/invitation/add" class="btn btn-success">Invite Player</a>
+            <a href="/guilds/{{ guild.id }}/ranks/managment" class="btn btn-warning">Ranks Managment</a>
+        {% endif %}
+        {% if loggedRankLevel == 3 %}
+            <a href="#" onclick="openModal('/guilds/{{ guild.id }}/delete', 'Are you sure you want to delete this guild?', ['No', 'Yes'])" class="btn btn-danger">Delete Guild</a>
+        {% endif %}
+    </div>
+{% endblock %}
