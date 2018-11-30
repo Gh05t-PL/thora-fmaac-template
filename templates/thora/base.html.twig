@@ -29,6 +29,7 @@
         function BigButtonAction(path) {
             window.location = path;
         }
+
         varloginStatus = 0;
         loginStatus = 'false';
         var activeSubmenuItem = 'latestnews';
@@ -52,7 +53,8 @@
     <script src="/templates/thora/js/moment.js"></script>
     <script src="/templates/thora/js/livestamp.js"></script>
     <script type="text/javascript" src="/templates/thora/js/global.js.php?up05"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <!-- highlight.js library -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
@@ -166,7 +168,7 @@
             word-spacing: normal
         }
 
-        .fb_reset>div {
+        .fb_reset > div {
             overflow: hidden
         }
 
@@ -248,7 +250,7 @@
             margin: 0
         }
 
-        .fb_dialog_content .dialog_title>span {
+        .fb_dialog_content .dialog_title > span {
             background: url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;
             float: left;
             padding: 5px 0 7px 26px
@@ -730,17 +732,19 @@
 </div>
 <div class="container" style="width: 1194px;">
     <div id="pasek"><span class="p">Valhalla has started on <span class="text">Saturday 24 October</span> at <span
-                    class="text">18:00 CEST</span>! - Make sure you check out our <a href="https://www.facebook.com/ValhallaAlternativeOTServer"><span
+                    class="text">18:00 CEST</span>! - Make sure you check out our <a
+                    href="https://www.facebook.com/ValhallaAlternativeOTServer"><span
                         class="text">Facebook</span></a>! for latest news!
             <div class="btn-group navbar-right">
                 {% if loginHelper.isLoggedIn() %}
-                    <a href="/account/logout"><button type="button" class="p2 btn-login btn-success"><span class="glyphicon glyphicon-share-alt"></span>Logout</button></a>
+                    <a href="/account/logout"><button type="button" class="p2 btn-login btn-success"><span
+                                    class="glyphicon glyphicon-share-alt"></span>Logout</button></a>
                 {% else %}
-                        <button type="button" class="p2 btn-login btn-success dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="p2 btn-login btn-success dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-share-alt"></span>Login<span class="caret"></span>
                         </button>
 
-                        <ul class="dropdown-menu" role="menu">
+                    <ul class="dropdown-menu" role="menu">
                             <li style="width: 266px; margin: 5px 15px 0px 15px;">
                                 <form action="/account/login" method="post">
                                     <div class="form-group">
@@ -752,7 +756,8 @@
                                                placeholder="Password">
                                     </div>
                                     <button type="submit" class="btn btn-success" style="width: 100px">Login</button>
-                                    <a class="btn btn-default" style="width: 131px" href="http://127.0.0.1/?subtopic=lostaccount">Lost
+                                    <a class="btn btn-default" style="width: 131px"
+                                       href="http://127.0.0.1/?subtopic=lostaccount">Lost
                                         Password?</a>
                                 </form>
                             </li>
@@ -775,16 +780,16 @@
             {% set str = "success" %}
         {% endif %}
         <a href="/players/online"><span class="label-online label-{{ str }} pull-right">
-                    <font color="white"><b>Server<br>{{ (str == "danger" ? "OFFLINE" : "ONLINE")  }}</b></font>
+                    <font color="white"><b>Server<br>{{ (str == "danger" ? "OFFLINE" : "ONLINE") }}</b></font>
                 </span></a>
     </div>
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-           {# <!-- Brand and toggle get grouped for better mobile display -->
+            {# <!-- Brand and toggle get grouped for better mobile display -->
 
 
-            <!-- Collect the nav links, forms, and other content for toggling -->#}
+             <!-- Collect the nav links, forms, and other content for toggling -->#}
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
@@ -794,7 +799,8 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false"><i class="glyphicon glyphicon-lock"></i> Account <span class="caret"></span></a>
+                           aria-expanded="false"><i class="glyphicon glyphicon-lock"></i> Account <span
+                                    class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/account/create">Create Account</a></li>
                             <li><a href="/account">Account</a></li>
@@ -803,7 +809,8 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false"><i class="glyphicon glyphicon-user"></i> Community <span class="caret"></span></a>
+                           aria-expanded="false"><i class="glyphicon glyphicon-user"></i> Community <span
+                                    class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/player">Characters</a></li>
                             <li><a href="/highscores">Highscores</a></li>
@@ -816,7 +823,8 @@
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false"><i class="glyphicon glyphicon-info-sign"></i> Library <span class="caret"></span></a>
+                           aria-expanded="false"><i class="glyphicon glyphicon-info-sign"></i> Library <span
+                                    class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/server/info">Server Info</a></li>
                             {# <!--<li><a href="http://127.0.0.1/?subtopic=tasklist">Task List</a></li>-->
@@ -847,8 +855,8 @@
                             {#<li><a href="http://127.0.0.1/?subtopic=shopsystem">Shop</a></li>#}
                             <li><a href="/points">Purchase Points</a></li>
                             {#<li><a href="http://127.0.0.1/?subtopic=premium">#}
-                                    {#<font color="lime">Premium Info</font>#}
-                                {#</a></li>#}
+                            {#<font color="lime">Premium Info</font>#}
+                            {#</a></li>#}
                         </ul>
                     </li>
 
@@ -856,12 +864,16 @@
                     <ul class="nav navbar-nav navbar-right">
 
 
-                            <div class="form-group" style="margin-top: 5px;margin-bottom: 0;">
-                                <div class="icon-addon addon-md">
-                                    <input id="szukator" type="text" name="name" placeholder="Search character..." class="form-control szukajka" onkeypress="(function(e,t){if (e.keyCode == 13 && t.value.length > 0) window.location.replace(('/player/' + t.value)) })(event,this)">
-                                    <label style="cursor: pointer;" for="szukajka" class="glyphicon glyphicon-search" rel="tooltip" title="szukajka" onclick="(function(){var szukator = document.querySelector('#szukator'); if(szukator.value.length > 0) window.location.replace(('/player/' + szukator.value)) })()"></label>
-                                </div>
+                        <div class="form-group" style="margin-top: 5px;margin-bottom: 0;">
+                            <div class="icon-addon addon-md">
+                                <input id="szukator" type="text" name="name" placeholder="Search character..."
+                                       class="form-control szukajka"
+                                       onkeypress="(function(e,t){if (e.keyCode == 13 && t.value.length > 0) window.location.replace(('/player/' + t.value)) })(event,this)">
+                                <label style="cursor: pointer;" for="szukajka" class="glyphicon glyphicon-search"
+                                       rel="tooltip" title="szukajka"
+                                       onclick="(function(){var szukator = document.querySelector('#szukator'); if(szukator.value.length > 0) window.location.replace(('/player/' + szukator.value)) })()"></label>
                             </div>
+                        </div>
 
 
                     </ul>
@@ -882,8 +894,10 @@
                 <img src="/templates/thora/promocjaa.gif" width="197">
                 <div>
                     <center>
-                        <div style="width:180px;margin-top: -29px;position: relative;"><a class="btn btn-small btn-success btn-block"
-                                                                                          href="http://127.0.0.1/?subtopic=shopsystem"><span class="glyphicon glyphicon-shopping-cart"></span>
+                        <div style="width:180px;margin-top: -29px;position: relative;"><a
+                                    class="btn btn-small btn-success btn-block"
+                                    href="http://127.0.0.1/?subtopic=shopsystem"><span
+                                        class="glyphicon glyphicon-shopping-cart"></span>
                                 Get Premium!</a></div>
                     </center>
                 </div>
@@ -891,15 +905,10 @@
                     <tbody>
 
 
-
-
-
                     </tbody>
                 </table>
 
             </div>
-
-
 
 
             <div class="well">
@@ -945,41 +954,49 @@
 
         <div class="col-3 pull-right">
             {% if true %}
-            <div class="well">
-                <h2>
-                    <font color="black">Powergamer of day</font>
-                </h2>
-                <table class="table table-condensed table-content table-striped">
-                    <tbody>
-                    {% for player in getPowerGamers() %}
-                        <tr>
-                            <td><a href="/player/{{ player.name }}" style="word-break: break-all;">{{ player.name }}</a>&nbsp;</td>
-                            {% if player.expDiff > 999999 and player.expDiff < 999999999 %}
-                                {#<p class="level"#}
-                                   {#style="font-size: 10px; padding-bottom: 0; border-radius: 5px; padding-top: 3px; background: green;">#}
-                                <td><span class="label label-success pull-right" style="font-size: 10px">+{{ player.expDiff|number_format(0,'',',') }}</span></td>
+                <div class="well">
+                    <h2>
+                        <font color="black">Powergamer of day</font>
+                    </h2>
+                    <table class="table table-condensed table-content table-striped">
+                        <tbody>
+                        {% for player in getPowerGamers() %}
+                            <tr>
+                                <td><a href="/player/{{ player.name }}"
+                                       style="word-break: break-all;">{{ player.name }}</a>&nbsp;
+                                </td>
+                                {% if player.expDiff > 999999 and player.expDiff < 999999999 %}
+                                    {#<p class="level"#}
+                                    {#style="font-size: 10px; padding-bottom: 0; border-radius: 5px; padding-top: 3px; background: green;">#}
+                                    <td><span class="label label-success pull-right"
+                                              style="font-size: 10px">+{{ player.expDiff|number_format(0,'',',') }}</span>
+                                    </td>
 
-                            {% elseif player.expDiff > 999999999 %}
-                                {#<p class="level"#}
-                                   {#style="font-size: 9px; padding-bottom: 0; border-radius: 5px; padding-top: 3px; background: green;">#}
-                                <td><span class="label label-success pull-right" style="font-size: 9px;">+{{ player.expDiff|number_format(0,'',',') }}</span></td>
+                                {% elseif player.expDiff > 999999999 %}
+                                    {#<p class="level"#}
+                                    {#style="font-size: 9px; padding-bottom: 0; border-radius: 5px; padding-top: 3px; background: green;">#}
+                                    <td><span class="label label-success pull-right"
+                                              style="font-size: 9px;">+{{ player.expDiff|number_format(0,'',',') }}</span>
+                                    </td>
 
-                            {% else %}
-                                {#<p class="level" style="background: green; border-radius: 5px;">#}
-                                <td><span class="label label-success pull-right">+{{ player.expDiff|number_format(0,'',',') }}</span></td>
+                                {% else %}
+                                    {#<p class="level" style="background: green; border-radius: 5px;">#}
+                                    <td>
+                                        <span class="label label-success pull-right">+{{ player.expDiff|number_format(0,'',',') }}</span>
+                                    </td>
 
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <table class="table table-condensed table-content table-striped">
-                    <tbody>
-                    </tbody>
-                </table>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <table class="table table-condensed table-content table-striped">
+                        <tbody>
+                        </tbody>
+                    </table>
 
 
-            </div>
+                </div>
             {% endif %}
 
             <div class="well">
@@ -990,11 +1007,13 @@
                 <table class="table table-condensed table-content table-striped">
                     <tbody>
                     {% for player in getTop5() %}
-                    <tr>
-                        <td style="width: 80%"><strong>{{ loop.index }}.</strong><a href="/player/{{ player.name }}" style="word-break: break-all;">{{ player.name }}</a></td>
-                        <td><span class="label label-primary">Lvl. {{ player.level }}</span></td>
-                    </tr>
-                    {%  endfor %}
+                        <tr>
+                            <td style="width: 80%"><strong>{{ loop.index }}.</strong><a href="/player/{{ player.name }}"
+                                                                                        style="word-break: break-all;">{{ player.name }}</a>
+                            </td>
+                            <td><span class="label label-primary">Lvl. {{ player.level }}</span></td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -1016,8 +1035,10 @@
                 <center style="margin-bottom: 15px;">
                     <h1>Welcome to {{ otsName }}</h1>
                     <p>{{ otsName }} {{ aboutServer }}</p>
-                    <center><a class="btn btn-success" href="/account/create"><span class="glyphicon glyphicon-share-alt"></span>
-                            Create Account</a> <a class="btn btn-warning" href="http://127.0.0.1/templates/thora/thorav2_antibot.zip"><span
+                    <center><a class="btn btn-success" href="/account/create"><span
+                                    class="glyphicon glyphicon-share-alt"></span>
+                            Create Account</a> <a class="btn btn-warning"
+                                                  href="http://127.0.0.1/templates/thora/thorav2_antibot.zip"><span
                                     class="glyphicon glyphicon-download-alt"></span> Download Client</a></center>
                 </center>
             </div>
@@ -1031,34 +1052,34 @@
                 </div>
                 <script src="/templates/thora/js/bootstrap.js"></script>
                 {#<script>#}
-                    {#$(function () {#}
-                        {#var targetA = $('a[href$="latestnews"]');#}
-                        {#var el = (targetA.find("button").length) ? targetA.find("button") : targetA.parent();#}
-                        {#el.addClass('active');#}
+                {#$(function () {#}
+                {#var targetA = $('a[href$="latestnews"]');#}
+                {#var el = (targetA.find("button").length) ? targetA.find("button") : targetA.parent();#}
+                {#el.addClass('active');#}
 
-                        {#$('input[name$=login], input[name=name]').click(function (e) {#}
-                            {#e.stopPropagation();#}
-                        {#});#}
+                {#$('input[name$=login], input[name=name]').click(function (e) {#}
+                {#e.stopPropagation();#}
+                {#});#}
 
-                        {#var count = 92890;#}
-                        {#/*var counter = setInterval(timer, 1000);#}
+                {#var count = 92890;#}
+                {#/*var counter = setInterval(timer, 1000);#}
 
-                        {#function timer() {#}
-                            {#count = count - 1;#}
-                            {#if (count == -1) {#}
-                                {#count = 24 * 60 * 60;#}
-                            {#}#}
+                {#function timer() {#}
+                {#count = count - 1;#}
+                {#if (count == -1) {#}
+                {#count = 24 * 60 * 60;#}
+                {#}#}
 
-                            {#var seconds = count % 60;#}
-                            {#var minutes = Math.floor(count / 60);#}
-                            {#var hours = Math.floor(minutes / 60);#}
-                            {#minutes %= 60;#}
-                            {#hours %= 60;#}
+                {#var seconds = count % 60;#}
+                {#var minutes = Math.floor(count / 60);#}
+                {#var hours = Math.floor(minutes / 60);#}
+                {#minutes %= 60;#}
+                {#hours %= 60;#}
 
-                            {#document.getElementById("timer").innerHTML = hours + " hours " + minutes +#}
-                                {#" minutes and " + seconds + " seconds";#}
-                        {#}*/#}
-                    {#});#}
+                {#document.getElementById("timer").innerHTML = hours + " hours " + minutes +#}
+                {#" minutes and " + seconds + " seconds";#}
+                {#}*/#}
+                {#});#}
                 {#</script>#}
 
                 <footer class="footer">
