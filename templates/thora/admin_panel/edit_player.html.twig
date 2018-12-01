@@ -9,24 +9,27 @@
         width: 95%;
         font: 18px/1.5 sans-serif;
     }
-    tr:nth-child(even) {
-        background: #dddddd;
+    table#playerEdit > tbody >tr:nth-child(even) {
+        background: white;
     }
-    th:nth-child(1) {
+    table#playerEdit > tbody >tr:nth-child(odd) {
+        background: #c8c8c8;
+    }
+    table#playerEdit > tbody >th:nth-child(1) {
         width: 10%;
     }
-    th:nth-child(2) {
+    table#playerEdit > tbody >th:nth-child(2) {
         width: 60%;
     }
-    th:nth-child(3) {
+    table#playerEdit > tbody >th:nth-child(3) {
         width: 20%;
     }
-    td, th {
-        border: 1px solid #dddddd;
+    table#playerEdit > tbody >tr>td, th {
+        border: 1px solid #1b1b1b;
         text-align: left;
         padding: 8px;
     }
-    table {
+    table#playerEdit {
         width: 100%;
     }
 </style>
@@ -34,7 +37,7 @@
     {% if player %}
     <div class="info">
         <p class="label">Character Info</p>
-        <table>
+        <table id="playerEdit">
             <tr>
                 <td style="width: 53%;">Name:</td>
                 <td><strong>{{ (player.isOnline ? ("<span style='color: green;'>#{player.name}</span>"): player.name)|raw }}</strong></td>
