@@ -217,6 +217,13 @@
                                                 {#</tr>#}
                                                 {#</tbody>#}
                                                 {#</table>#}
+                                                {% if loginHelper.isAdmin() %}
+                                                    <a href="/admin"
+                                                       class="btn btn-sm btn- btn-danger"
+                                                       type="submit"
+                                                       value="Change Email"
+                                                       alt="Change Email" style="float: right;">Admin Panel</a>
+                                                {% endif %}
                                             </td>
                                         </tr>
                                         </tbody>
