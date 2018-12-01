@@ -5,161 +5,196 @@
         table#char-info tr:nth-child(even) {
             background-color: #E9EBEC;
         }
+
         table#char-info tr:nth-child(odd) {
             background-color: white;
         }
     </style>
     {% if player %}
-    <table id="char-info" border="0" cellspacing="1" cellpadding="4" width="100%">
-        <tbody>
-        <tr style="background-color: #2C3E50">
-            <td colspan="2" style="font-weight:bold;color:white">Character Information</td>
-        </tr>
-        <tr>
-            <td width="20%">Name:</td>
-            <td style="font-weight:bold;color:{{ (player.isOnline ? "green" : "red")|raw }}">{{ player.name }}</td>
-        </tr>
-        <tr>
-            <td>Sex:</td>
-            <td>male</td>
-        </tr>
-        <tr>
-            <td>Profession:</td>
-            <td>{{ vocations[player.vocation] }}</td>
-        </tr>
-        <tr>
-            <td>Level:</td>
-            <td>{{ player.level }}</td>
-        </tr>
-        {% if player.guild is iterable %}
-            <tr>
-                <td>Guild:</td>
-                <td>He is {{ player.guild.rankName }} of {{ player.guild.guildName }}</td>
+        <table id="char-info" border="0" cellspacing="1" cellpadding="4" width="100%">
+            <tbody>
+            <tr style="background-color: #2C3E50">
+                <td colspan="2" style="font-weight:bold;color:white">Character Information</td>
             </tr>
-        {% endif %}
-
-        <tr>
-            <td>Residence:</td>
-            {% set town = "" %}
-            {% for key,townid in cities %}
-                {% if townid == player.townId %}
-                    {% set town = key %}
-                {% endif %}
-            {% endfor %}
-            <td>{{ town }}</td>
-        </tr>
-        <tr>
-            <td>Balance:</td>
-            <td>{{ player.balance }} gold coins</td>
-        </tr>
-        <tr>
-            <td>Last login:</td>
-            {% if player.lastlogin > 0 %}
-                <td>{{ player.lastlogin|date("d.m.Y H:i:s") }}</td>
-            {% else %}
-                <td>Never</td>
+            <tr>
+                <td width="20%">Name:</td>
+                <td style="font-weight:bold;color:{{ (player.isOnline ? "green" : "red")|raw }}">{{ player.name }}</td>
+            </tr>
+            <tr>
+                <td>Sex:</td>
+                <td>male</td>
+            </tr>
+            <tr>
+                <td>Profession:</td>
+                <td>{{ vocations[player.vocation] }}</td>
+            </tr>
+            <tr>
+                <td>Level:</td>
+                <td>{{ player.level }}</td>
+            </tr>
+            {% if player.guild is iterable %}
+                <tr>
+                    <td>Guild:</td>
+                    <td>He is {{ player.guild.rankName }} of {{ player.guild.guildName }}</td>
+                </tr>
             {% endif %}
 
-        </tr>
-        </tbody>
-    </table>
-    <table width="100%">
-        <tbody>
-        <tr>
-            <td align="center">
-                <table with="100%" style="border: solid 1px #888888;" cellspacing="1">
-                    <tbody>
-                    <tr>
-                        <td><img src="/templates/thora//images/all/2.gif" width="45"></td>
-                        <td><img src="/templates/thora/images/all/1.gif" width="45"></td>
-                        <td><img src="/templates/thora/images/all/3.gif" width="45"></td>
-                    </tr>
-                    <tr>
-                        <td><img src="/templates/thora/images/all/6.gif" width="45"></td>
-                        <td><img src="/templates/thora/images/all/4.gif" width="45"></td>
-                        <td><img src="/templates/thora/images/all/5.gif" width="45"></td>
-                    </tr>
-                    <tr>
-                        <td><img src="/templates/thora/images/all/9.gif" width="45"></td>
-                        <td><img src="/templates/thora/images/all/7.gif" width="45"></td>
-                        <td><img src="/templates/thora/images/all/10.gif" width="45"></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center;">Soul:<br>{{ player.soul }}</td>
-                        <td><img src="/templates/thora/images/all/8.gif" width="45"></td>
-                        <td style=" text-align: center;">Cap:<br>{{ player.cap }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </td>
-            <td align="center">
-                <table width="100%">
-                    <tbody>
-                    <tr>
-                        <td align="center">
-                            <table cellspacing="1" cellpadding="4" width="100%">
-                                <tbody>
-                                <tr>
-                                    <td bgcolor="white" align="left" width="20%"><b>Health:</b></td>
-                                    <td bgcolor="white" align="left">{{ player.health }}/{{ player.healthmax }}<div style="width: 100%; height: 7px; border: 1px solid #000;">
-                                            <div style="background-image: url(/templates/thora/images/skills/hp.png); width: {{ (player.health / player.healthmax)*100 }}%; height: 5px;"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="E9EBEC" align="left"><b>Mana:</b></td>
-                                    <td bgcolor="E9EBEC" align="left">{{ player.mana }}/{{ player.manamax }}<div style="width: 100%; height: 7px; border: 1px solid #000;">
-                                            <div style="background-image: url(/templates/thora/images/skills/mana.png); width: {{ (player.mana / player.manamax)*100 }}%; height: 5px;"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-                    </tbody>
-                </table>
-                <table cellspacing="1" cellpadding="4">
-                    <tbody>
-                    <tr>
-                        <td bgcolor="white" align="left" width="20%"><b>Player
-                                Level:</b></td>
-                        <td bgcolor="white" align="left">{{ player.level }}</td>
-                    </tr>
-                    <tr>
-                        <td bgcolor="E9EBEC" align="left"><b>Player Experience:</b></td>
-                        <td bgcolor="E9EBEC" align="left">{{ player.experience }} EXP.</td>
-                    </tr>
-                    <tr>
-                        <td bgcolor="white" align="left"><b>To Next Level:</b></td>
-                        {% set toLevel = ((50 * (player.level+1 - 1) ** 3 - 150 * (player.level+1 - 1) ** 2 + 400 * (player.level+1 - 1)) / 3) %}
-                        <td bgcolor="white" align="left"><p>You need <b>{{ toLevel-player.experience }} EXP</b>
-                            to Level <b>{{ player.level+1 }}</b>.</p><div title="{{ ((toLevel-player.experience)/toLevel)*100 }}% left" style="width: 100%; height: 5px; border: 1px solid #000;">
-                                <div style="background: red; width: {{ 100-(((toLevel-player.experience)/toLevel)*100) }}%; height: 3px;"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <center><strong>Skills</strong>
+            <tr>
+                <td>Residence:</td>
+                {% set town = "" %}
+                {% for key,townid in cities %}
+                    {% if townid == player.townId %}
+                        {% set town = key %}
+                    {% endif %}
+                {% endfor %}
+                <td>{{ town }}</td>
+            </tr>
+            <tr>
+                <td>Balance:</td>
+                <td>{{ player.balance }} gold coins</td>
+            </tr>
+            <tr>
+                <td>Last login:</td>
+                {% if player.lastlogin > 0 %}
+                    <td>{{ player.lastlogin|date("d.m.Y H:i:s") }}</td>
+                {% else %}
+                    <td>Never</td>
+                {% endif %}
+
+            </tr>
+            </tbody>
+        </table>
+        <table width="100%">
+            <tbody>
+            <tr>
+                <td align="center">
+                    <table with="100%" style="border: solid 1px #888888;" cellspacing="1">
+                        <tbody>
+                        <tr>
+                            <td><img src="/templates/thora//images/all/2.gif" width="45"></td>
+                            <td><img src="/templates/thora/images/all/1.gif" width="45"></td>
+                            <td><img src="/templates/thora/images/all/3.gif" width="45"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="/templates/thora/images/all/6.gif" width="45"></td>
+                            <td><img src="/templates/thora/images/all/4.gif" width="45"></td>
+                            <td><img src="/templates/thora/images/all/5.gif" width="45"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="/templates/thora/images/all/9.gif" width="45"></td>
+                            <td><img src="/templates/thora/images/all/7.gif" width="45"></td>
+                            <td><img src="/templates/thora/images/all/10.gif" width="45"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">Soul:<br>{{ player.soul }}</td>
+                            <td><img src="/templates/thora/images/all/8.gif" width="45"></td>
+                            <td style=" text-align: center;">Cap:<br>{{ player.cap }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td align="center">
+                    <table width="100%">
+                        <tbody>
+                        <tr>
+                            <td align="center">
+                                <table cellspacing="1" cellpadding="4" width="100%">
+                                    <tbody>
+                                    <tr>
+                                        <td bgcolor="white" align="left" width="20%"><b>Health:</b></td>
+                                        <td bgcolor="white" align="left">{{ player.health }}/{{ player.healthmax }}
+                                            <div style="width: 100%; height: 7px; border: 1px solid #000;">
+                                                <div style="background-image: url(/templates/thora/images/skills/hp.png); width: {{ (player.health / player.healthmax)*100 }}%; height: 5px;"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td bgcolor="E9EBEC" align="left"><b>Mana:</b></td>
+                                        <td bgcolor="E9EBEC" align="left">{{ player.mana }}/{{ player.manamax }}
+                                            <div style="width: 100%; height: 7px; border: 1px solid #000;">
+                                                <div style="background-image: url(/templates/thora/images/skills/mana.png); width: {{ (player.mana / player.manamax)*100 }}%; height: 5px;"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        </tbody>
+                    </table>
+                    <table cellspacing="1" cellpadding="4">
+                        <tbody>
+                        <tr>
+                            <td bgcolor="white" align="left" width="20%"><b>Player
+                                    Level:</b></td>
+                            <td bgcolor="white" align="left">{{ player.level }}</td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="E9EBEC" align="left"><b>Player Experience:</b></td>
+                            <td bgcolor="E9EBEC" align="left">{{ player.experience }} EXP.</td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="white" align="left"><b>To Next Level:</b></td>
+                            {% set toLevel = ((50 * (player.level+1 - 1) ** 3 - 150 * (player.level+1 - 1) ** 2 + 400 * (player.level+1 - 1)) / 3) %}
+                            <td bgcolor="white" align="left"><p>You need <b>{{ toLevel-player.experience }} EXP</b>
+                                    to Level <b>{{ player.level+1 }}</b>.</p>
+                                <div title="{{ ((toLevel-player.experience)/toLevel)*100 }}% left"
+                                     style="width: 100%; height: 5px; border: 1px solid #000;">
+                                    <div style="background: red; width: {{ 100-(((toLevel-player.experience)/toLevel)*100) }}%; height: 3px;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <center><strong>Skills</strong>
         <table cellspacing="0" cellpadding="0" border="0" width="200">
 
             <tbody>
             <tr>
-                <td style="text-align: center;"><a href="?subtopic=highscores&amp;list=experience"><img class="img-circle" src="/templates/thora/images/skills/level.gif" alt="" style="border-style: none"></a></td>
-                <td style="text-align: center;"><a href="?subtopic=highscores&amp;list=magic"><img class="img-circle" src="/templates/thora/images/skills/ml.gif" alt="" style="border-style: none"></a></td>
-                <td style="text-align: center;"><a href="?subtopic=highscores&amp;list=club"><img class="img-circle" src="/templates/thora/images/skills/club.gif" alt="" style="border-style: none"></a></td>
-                <td style="text-align: center;"><a href="?subtopic=highscores&amp;list=sword"><img class="img-circle" src="/templates/thora/images/skills/sword.gif" alt="" style="border-style: none"></a></td>
-                <td style="text-align: center;"><a href="?subtopic=highscores&amp;list=axe"><img class="img-circle" src="/templates/thora/images/skills/axe.gif" alt="" style="border-style: none"></a></td>
-                <td style="text-align: center;"><a href="?subtopic=highscores&amp;list=distance"><img class="img-circle" src="/templates/thora/images/skills/dist.gif" alt="" style="border-style: none"></a></td>
-                <td style="text-align: center;"><a href="?subtopic=highscores&amp;list=shield"><img class="img-circle" src="/templates/thora/images/skills/def.gif" alt="" style="border-style: none"></a></td>
-                <td style="text-align: center;"><a href="?subtopic=highscores&amp;list=fishing"><img class="img-circle" src="/templates/thora/images/skills/fish.gif" alt="" style="border-style: none"></a></td>
+                <td style="text-align: center;"><a href="/highscores/level"><img
+                                class="img-circle" src="/templates/thora/images/skills/level.gif" alt=""
+                                style="border-style: none"></a></td>
+                <td style="text-align: center;"><a href="/highscores/mlvl"><img class="img-circle"
+                                                                                                   src="/templates/thora/images/skills/ml.gif"
+                                                                                                   alt=""
+                                                                                                   style="border-style: none"></a>
+                </td>
+                <td style="text-align: center;"><a href="/highscores/club"><img class="img-circle"
+                                                                                                  src="/templates/thora/images/skills/club.gif"
+                                                                                                  alt=""
+                                                                                                  style="border-style: none"></a>
+                </td>
+                <td style="text-align: center;"><a href="/highscores/sword"><img class="img-circle"
+                                                                                                   src="/templates/thora/images/skills/sword.gif"
+                                                                                                   alt=""
+                                                                                                   style="border-style: none"></a>
+                </td>
+                <td style="text-align: center;"><a href="/highscores/axe"><img class="img-circle"
+                                                                                                 src="/templates/thora/images/skills/axe.gif"
+                                                                                                 alt=""
+                                                                                                 style="border-style: none"></a>
+                </td>
+                <td style="text-align: center;"><a href="/highscores/distance"><img class="img-circle"
+                                                                                                      src="/templates/thora/images/skills/dist.gif"
+                                                                                                      alt=""
+                                                                                                      style="border-style: none"></a>
+                </td>
+                <td style="text-align: center;"><a href="/highscores/shielding"><img class="img-circle"
+                                                                                                    src="/templates/thora/images/skills/def.gif"
+                                                                                                    alt=""
+                                                                                                    style="border-style: none"></a>
+                </td>
+                <td style="text-align: center;"><a href="/highscores/fishing"><img class="img-circle"
+                                                                                                     src="/templates/thora/images/skills/fish.gif"
+                                                                                                     alt=""
+                                                                                                     style="border-style: none"></a>
+                </td>
             </tr>
             <tr>
             </tr>
@@ -187,117 +222,174 @@
             </tr>
             </tbody>
         </table>
-    <!-- <div style="text-align: center;">&nbsp;<br>&nbsp;</div>
- </center>
- <table border="0">
-     <tbody>
-     <tr>
-         <td></td>
-     </tr>
-     </tbody>
- </table>
- <table border="0" cellspacing="1" cellpadding="4" width="100%">
-     <tbody>
-     <tr bgcolor="2C3E50">
-         <td colspan="2" class="white"><b>Account Information</b></td>
-     </tr>
-     <tr bgcolor="E9EBEC">
-         <td width="20%">Last login:</td>
-         <td>Never logged in.</td>
-     </tr>
-     <tr bgcolor="ECF0F1">
-         <td>Account&nbsp;Status:</td>
-         <td><b>
-                 <font color="red">Free Account</font>
-             </b>
-             <font color="red"> [Banished FOREVER]</font>
-         </td>
-     </tr>
-     </tbody>
- </table><br>
-    <table border="0">
-        <tbody>
-        <tr>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>-->
-    <!--<table border="0" cellspacing="1" cellpadding="4" width="100%">
-        <tbody>
-        <tr bgcolor="2C3E50">
-            <td colspan="5" class="white"><b>Characters</b></td>
-        </tr>
-        <tr bgcolor="ECF0F1">
-            <td><b>Name</b></td>
-            <td><b>Level</b></td>
-            <td><b>Status</b></td>
-            <td><b>&nbsp;</b></td>
-        </tr>
-        <tr bgcolor="E9EBEC">
-            <td width="52%">
-                <nobr>1.&nbsp;Ghost</nobr>
-            </td>
-            <td width="25%">8 Goku</td>
-            <td width="8%"><b>
-                    <font color="red">Offline</font>
-                </b></td>
-            <td>
-                <table border="0" cellspacing="0" cellpadding="0">
-                    <form action="?subtopic=characters" method="post"></form>
-                    <tbody>
-                    <tr>
-                        <td><input type="hidden" name="name" value="Ghost"><input type="submit" value="View" ghost"="" alt="View Eupozi" class="btn btn-xs btn-default" src="/templates/thora/images/buttons/sbutton_view.gif" border="0" width="120" height="18"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        <tr bgcolor="E9EBEC">
-            <td width="52%">
-                <nobr>2.&nbsp;Ghost Dfa</nobr>
-            </td>
-            <td width="25%">8 Goku</td>
-            <td width="8%"><b>
-                    <font color="red">Offline</font>
-                </b></td>
-            <td>
-                <table border="0" cellspacing="0" cellpadding="0">
-                    <form action="?subtopic=characters" method="post"></form>
-                    <tbody>
-                    <tr>
-                        <td><input type="hidden" name="name" value="Ghost Dfa"><input type="submit" value="View" ghost="" dfa"="" alt="View Eupozi" class="btn btn-xs btn-default" src="./layouts/thora/images/buttons/sbutton_view.gif" border="0" width="120" height="18"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-        </tbody>
-    </table>--><img src="/templates/thora/images/blank.gif" width="10" height="1" border="0"><br><br>
-{% endif %}
-        <table width="100%" border="0" cellspacing="1" cellpadding="4">
+        <!-- <div style="text-align: center;">&nbsp;<br>&nbsp;</div>
+     </center>
+     <table border="0">
+         <tbody>
+         <tr>
+             <td></td>
+         </tr>
+         </tbody>
+     </table>
+     <table border="0" cellspacing="1" cellpadding="4" width="100%">
+         <tbody>
+         <tr bgcolor="2C3E50">
+             <td colspan="2" class="white"><b>Account Information</b></td>
+         </tr>
+         <tr bgcolor="E9EBEC">
+             <td width="20%">Last login:</td>
+             <td>Never logged in.</td>
+         </tr>
+         <tr bgcolor="ECF0F1">
+             <td>Account&nbsp;Status:</td>
+             <td><b>
+                     <font color="red">Free Account</font>
+                 </b>
+                 <font color="red"> [Banished FOREVER]</font>
+             </td>
+         </tr>
+         </tbody>
+     </table><br>
+        <table border="0">
             <tbody>
             <tr>
-                <td bgcolor="2C3E50" class="white"><b>
-                        <center>Search Character</center>
-                    </b></td>
+                <td></td>
             </tr>
-            <tr>
-                <td bgcolor="ECF0F1">
-                    <table border="0" cellpadding="1">
+            </tbody>
+        </table>-->
+        <!--<table border="0" cellspacing="1" cellpadding="4" width="100%">
+            <tbody>
+            <tr bgcolor="2C3E50">
+                <td colspan="5" class="white"><b>Characters</b></td>
+            </tr>
+            <tr bgcolor="ECF0F1">
+                <td><b>Name</b></td>
+                <td><b>Level</b></td>
+                <td><b>Status</b></td>
+                <td><b>&nbsp;</b></td>
+            </tr>
+            <tr bgcolor="E9EBEC">
+                <td width="52%">
+                    <nobr>1.&nbsp;Ghost</nobr>
+                </td>
+                <td width="25%">8 Goku</td>
+                <td width="8%"><b>
+                        <font color="red">Offline</font>
+                    </b></td>
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <form action="?subtopic=characters" method="post"></form>
                         <tbody>
                         <tr>
-                            <td>Name:</td>
-                            <td><input id="szukatorr" name="name" value="" size="29" maxlength="29"
-                                       onkeypress="(function(e,t){if (e.keyCode == 13 && t.value.length > 0) window.location.replace(('/player/' + t.value)) })(event,this)">
-                            </td>
-                            <td><input type="submit" class="btn btn-default btn-sm" value="Search" name="Submit"
-                                       onclick="(function(){var szukator = document.querySelector('#szukatorr'); if(szukator.value.length > 0) window.location.replace(('/player/' + szukator.value)) })()">
-                            </td>
+                            <td><input type="hidden" name="name" value="Ghost"><input type="submit" value="View" ghost"="" alt="View Eupozi" class="btn btn-xs btn-default" src="/templates/thora/images/buttons/sbutton_view.gif" border="0" width="120" height="18"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr bgcolor="E9EBEC">
+                <td width="52%">
+                    <nobr>2.&nbsp;Ghost Dfa</nobr>
+                </td>
+                <td width="25%">8 Goku</td>
+                <td width="8%"><b>
+                        <font color="red">Offline</font>
+                    </b></td>
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0">
+                        <form action="?subtopic=characters" method="post"></form>
+                        <tbody>
+                        <tr>
+                            <td><input type="hidden" name="name" value="Ghost Dfa"><input type="submit" value="View" ghost="" dfa"="" alt="View Eupozi" class="btn btn-xs btn-default" src="./layouts/thora/images/buttons/sbutton_view.gif" border="0" width="120" height="18"></td>
                         </tr>
                         </tbody>
                     </table>
                 </td>
             </tr>
             </tbody>
-        </table>
+        </table>-->
+        <br>
+        {% if player.pk %}
+
+            <table id="char-info" border="0" cellspacing="1" cellpadding="4" width="100%">
+                <tbody>
+                <tr style="background-color: #2C3E50">
+                    <td colspan="2" style="font-weight:bold;color:white">Player Frags</td>
+                </tr>
+                {% for frags in player.pk %}
+                    <tr>
+                        <td>Killed <a href="/player/{{ frags.name }}">{{ frags.name }}</a>({{ frags.level }}) on {{ frags.date|date("d.m.Y H:i:s") }}</td>
+                        <td>{{ frags.unjustified ? "UnJustified" : "Justified" }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+        {% endif %}
+        {% if player.deathsByMonsters %}
+            <table id="char-info" border="0" cellspacing="1" cellpadding="4" width="100%">
+                <tbody>
+                <tr style="background-color: #2C3E50">
+                    <td colspan="2" style="font-weight:bold;color:white">Deaths by monsters</td>
+                </tr>
+                {% for death in player.deathsByMonsters %}
+                    <tr>
+                        <td>Killed by {{ death.killers }} at Level {{ death.level }} on {{ death.date|date("d.m.Y H:i:s") }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+        {% endif %}
+        {% if player.deathsByPlayers %}
+            <table id="char-info" border="0" cellspacing="1" cellpadding="4" width="100%">
+                <tbody>
+                <tr style="background-color: #2C3E50">
+                    <td colspan="2" style="font-weight:bold;color:white">Deaths by monsters</td>
+                </tr>
+                {% for death in player.deathsByPlayers %}
+                    <tr>
+                        {% set namess = death.names|split(',') %}
+                        <td>Killed by
+                            {% for name in namess %}
+                                {% if loop.last %}
+                                    <a href="/player/{{ name }}">{{ name }}</a>
+                                {% else %}
+                                    <a href="/player/{{ name }}">{{ name }}</a>,
+                                {% endif %}
+                            {% endfor %}
+                            at Level {{ death.level }} on {{ death.date|date("d.m.Y H:i:s") }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+        {% endif %}
+    {% endif %}
+    <table width="100%" border="0" cellspacing="1" cellpadding="4">
+        <tbody>
+        <tr>
+            <td bgcolor="2C3E50" class="white"><b>
+                    <center>Search Character</center>
+                </b></td>
+        </tr>
+        <tr>
+            <td bgcolor="ECF0F1">
+                <table border="0" cellpadding="1">
+                    <tbody>
+                    <tr>
+                        <td>Name:</td>
+                        <td><input id="szukatorr" name="name" value="" size="29" maxlength="29"
+                                   onkeypress="(function(e,t){if (e.keyCode == 13 && t.value.length > 0) window.location.replace(('/player/' + t.value)) })(event,this)">
+                        </td>
+                        <td><input type="submit" class="btn btn-default btn-sm" value="Search" name="Submit"
+                                   onclick="(function(){var szukator = document.querySelector('#szukatorr'); if(szukator.value.length > 0) window.location.replace(('/player/' + szukator.value)) })()">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 {% endblock %}
