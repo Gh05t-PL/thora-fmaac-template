@@ -3,55 +3,65 @@
 {% block title %}Server Info{% endblock %}
 
 {% block content %}
-<style>
-    .example-wrapper { margin: 1em auto; width: 95%; font: 18px/1.5 sans-serif; }
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
 
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-    table {
-        width: 100%;
-    }
-    tr:nth-child(even) {
-        background: #c8c8c8;
-    }
-    tr:nth-child(odd) {
-        background: white;
-    }
+        table#serverInfo > tbody > td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
 
-    th:nth-child(1) {
-        width: 40%;
-    }
-    th:nth-child(2) {
-        width: 60%;
-    }
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-    table {
-        width: 100%;
-    }
-</style>
+        table#serverInfo > tbody > table {
+            width: 100%;
+        }
 
-<div class="example-wrapper">
-    <h1>Server Info</h1>
-    <table>
-        <tr>
-            <th>Info</th>
-            <th>Value</th>
-        </tr>
-        {% for key,info in serverInfo %}
+        table#serverInfo > tbody > tr:nth-child(even) {
+            background: #c8c8c8;
+        }
+
+        table#serverInfo > tbody > tr:nth-child(odd) {
+            background: white;
+        }
+
+        table#serverInfo > tbody > th:nth-child(1) {
+            width: 40%;
+        }
+
+        table#serverInfo > tbody > th:nth-child(2) {
+            width: 60%;
+        }
+
+        table#serverInfo > tbody > td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        table#serverInfo {
+            width: 100%;
+        }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>Server Info</h1>
+        <table id="serverInfo">
             <tr>
-                <td>{{ key }}</td>
-                <td>{{ info }}</td>
+                <th>Info</th>
+                <th>Value</th>
             </tr>
-        {% endfor %}
+            {% for key,info in serverInfo %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ info }}</td>
+                </tr>
+            {% endfor %}
 
-    </table>
-</div>
+        </table>
+    </div>
 {% endblock %}
