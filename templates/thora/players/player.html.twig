@@ -54,7 +54,12 @@
         </tr>
         <tr>
             <td>Last login:</td>
-            <td>{{ player.lastlogin|date("d.m.Y H:i:s") }}</td>
+            {% if player.lastlogin > 0 %}
+                <td>{{ player.lastlogin|date("d.m.Y H:i:s") }}</td>
+            {% else %}
+                <td>Never</td>
+            {% endif %}
+
         </tr>
         </tbody>
     </table>
