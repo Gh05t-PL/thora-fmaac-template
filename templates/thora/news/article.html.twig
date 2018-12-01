@@ -16,3 +16,62 @@
 </div>
 
 {% endblock %}
+
+{% block javascripts %}
+    <script>
+        hljs.configure({   // optionally configure hljs
+            languages: ['javascript', 'php', 'html', 'twig']
+        });
+
+
+        var toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block', 'image'],
+
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+            [{ 'direction': 'rtl' }],                         // text direction
+
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+
+
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']                                         // remove formatting button
+        ];
+
+        var options = {
+            debug: 'info',
+            modules: {
+                toolbar: toolbarOptions,
+                syntax: true
+            },
+            placeholder: 'Compose an epic...',
+            readOnly: false,
+            theme: 'snow'
+        };
+
+        var reader = {
+            modules: {
+                syntax: true,
+                toolbar: false
+            },
+            readOnly: true,
+            theme: 'bubble'
+        };
+
+
+        if (document.getElementById("editor"))
+            var editor = new Quill('#editor',options);
+
+        if (document.getElementsByClassName("ql-editor ns text")){
+            for (let index = 0; index < document.getElementsByClassName("ql-editor ns").length; index++) {
+                new Quill(document.getElementsByClassName("ql-editor ns")[index],reader);
+
+            }
+        }
+    </script>
+{% endblock %}

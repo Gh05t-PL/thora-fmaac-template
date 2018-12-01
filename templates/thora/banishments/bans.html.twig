@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bans{% endblock %}
+
+{% block content %}
+<style>
+    .highscores-wrapper { margin: 1em auto;  width: 95%; font: 18px/1.5 sans-serif; }
+
+    /*table#bans > tbody > tr > tr:nth-child(even) {*/
+        /*background: #dddddd;*/
+    /*}*/
+    table#bans > tbody > tr > th:nth-child(1) {
+        width: 5%;
+    }
+    table#bans > tbody > tr > th:nth-child(2) {
+        width: 65%;
+    }
+    table#bans > tbody > tr > th:nth-child(3) {
+        width: 30%;
+    }
+    table#bans > tbody > tr:nth-child(1){
+        background: #2C3E50 !important;
+        color: white !important;
+    }
+    table#bans > tbody > tr:nth-child(even){
+        background: white;
+    }
+    table#bans > tbody > tr:nth-child(odd){
+        background: #eeeeee;
+    }
+    table#bans > tbody > td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    table#bans {
+        width: 100%;
+    }
+    .labell {
+        color: #000;
+    }
+
+
+</style>
+<div class="highscores-wrapper">
+<h1>Bans</h1>
+    {% if bans %}
+        <div class="online">
+            <p class="labell">Bans: <strong>{{ bans|length }}</strong></p>
+            <table id="bans">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th style="width: 30px">Expires</th>
+                </tr>
+                {% for ban in bans %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td><strong><a href="/player/{{ ban.name }}">{{ ban.name }}</a></strong></td>
+                        <td>{{ ban.expires|date('d.m.Y H:i:s') }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% else %}
+        <div class="online">
+            <p class="labell">No Bans... so far</p>
+            </table>
+        </div>
+    {% endif %}
+
+</div>
+<script>
+    function search(){
+        if (document.querySelector("#search").value != "")
+            window.location.replace("/player/"+document.querySelector("#search").value)
+    }
+    function enterSearch(event){
+        if (event.keyCode == 13){
+            window.location.replace("/player/"+document.querySelector("#search").value)
+        }
+    }
+</script>
+{% endblock %}
