@@ -165,69 +165,32 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <table class="InnerTableButtonRow" cellpadding="0"
-                                           cellspacing="0">
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <table border="0" cellspacing="0"
-                                                       cellpadding="0">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td style="border:0px;"><a href="/account/change/password"
-                                                                                   class="btn btn-inlineblock btn-sm btn-default"
-                                                                                   type="submit"
-                                                                                   value="Change Password"
-                                                                                   alt="Change Password">Change
-                                                                Password</a></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                            <td>
-                                                <table border="0" cellspacing="0"
-                                                       cellpadding="0">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td style="border:0px;"><a href="/account/change/email"
-                                                                                   class="btn btn-sm btn-default"
-                                                                                   type="submit"
-                                                                                   value="Change Email"
-                                                                                   alt="Change Email">Change Email</a>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                            <td><a href="/account/create/guild"
-                                                   class="btn btn-sm btn- btn-default"
-                                                   type="submit"
-                                                   value="Change Email"
-                                                   alt="Change Email">Create Guild</a></td>
-                                            <td width="100%">
-                                                {#<table border="0" cellspacing="0"#}
-                                                {#cellpadding="0">#}
-                                                {#<tbody>#}
-                                                {#<tr>#}
-                                                {#<td style="border:0px;"><input#}
-                                                {#class="btn btn-sm btn-default"#}
-                                                {#type="submit"#}
-                                                {#value="Register Account"#}
-                                                {#alt="Register Account"></td>#}
-                                                {#</tr>#}
-                                                {#</tbody>#}
-                                                {#</table>#}
-                                                {% if loginHelper.isAdmin() %}
-                                                    <a href="/admin"
-                                                       class="btn btn-sm btn- btn-danger"
-                                                       type="submit"
-                                                       value="Change Email"
-                                                       alt="Change Email" style="float: right;">Admin Panel</a>
-                                                {% endif %}
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                    <div style="display: grid;grid-template-columns: repeat(4,1fr);grid-gap: 30px;">
+                                        <a href="/account/change/password"
+                                           class="btn btn-inlineblock btn-sm btn-default"
+                                           type="submit"
+                                           value="Change Password"
+                                           alt="Change Password">Change
+                                            Password</a>
+                                        <a href="/account/change/email"
+                                           class="btn btn-sm btn-default"
+                                           type="submit"
+                                           value="Change Email"
+                                           alt="Change Email">Change Email</a>
+                                        <a href="/account/create/guild"
+                                           class="btn btn-sm btn- btn-default"
+                                           type="submit"
+                                           value="Change Email"
+                                           alt="Change Email">Create Guild</a>
+                                        {% if loginHelper.isAdmin() %}
+                                            <a href="/admin"
+                                               class="btn btn-sm btn- btn-danger"
+                                               type="submit"
+                                               value="Change Email"
+                                               alt="Change Email" style="float: right;">Admin Panel</a>
+                                        {% endif %}
+
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>
