@@ -259,7 +259,7 @@
                     <a href="/account/logout"><button type="button" class="p2 btn-login btn-success"><span
                                     class="glyphicon glyphicon-share-alt"></span>Logout</button></a>
                 {% else %}
-                    <button type="button" class="p2 btn-login btn-success dropdown-toggle" data-toggle="dropdown">
+                    <button type="button" class="p2 btn-login btn-success dropdown-toggle" onclick="(function(el){var parent = el.parentElement.classList.toggle('open');})(this)"{#data-toggle="dropdown"#}>
                             <span class="glyphicon glyphicon-share-alt"></span>Login<span class="caret"></span>
                         </button>
 
@@ -267,11 +267,13 @@
                             <li style="width: 266px; margin: 5px 15px 0px 15px;">
                                 <form action="/account/login" method="post">
                                     <div class="form-group">
-                                        <input type="password" name="account_login" maxlength="30" class="form-control"
+                                        <input type="password" name="form[Account]" maxlength="30" class="form-control"
                                                placeholder="Account Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password_login" maxlength="30" class="form-control"
+                                        <input type="hidden" id="form__token" name="form[_token]" value="{{ csrf_token('form') }}">
+
+                                        <input type="password" name="form[Password]" maxlength="30" class="form-control"
                                                placeholder="Password">
                                     </div>
                                     <button type="submit" class="btn btn-success" style="width: 100px">Login</button>

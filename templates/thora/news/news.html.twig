@@ -2,6 +2,24 @@
 
 
 {% block content %}
+    <style>
+        a.page {
+            background: white;
+            border: solid 1px black;
+            border-radius: 20px;
+            /* padding: 0px 5%; */
+            text-align: center;
+            margin: 0 5px;
+            display: block;
+        }
+        div.pages {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+        .page.active {
+            background:#dadada;
+        }
+    </style>
     {% for article in news %}
         {% if loop.last %}
             <div class="article">
